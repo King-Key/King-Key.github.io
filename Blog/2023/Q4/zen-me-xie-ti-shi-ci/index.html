@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • Stable Diffusion Webui中怎么写提示词</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q4&#x2F;zen-me-xie-ti-shi-ci&#x2F;">Stable Diffusion Webui中怎么写提示词</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-11-24 16:11:03</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>AIGC绘画提示词应该怎么写</p>
+</blockquote>
+<!--more-->
+<h2 id="1-ji-ben">1、基本</h2>
+<ul>
+<li>提示词由多个单词、词组和短句组成，用逗号分开</li>
+<li>分为正向提示词<code>positive prompt</code>和反向提示词<code>negative prompt</code></li>
+<li>权重：
+<ul>
+<li>范围0.1-100，默认为1，低于1是减弱，大于1是增强</li>
+<li>顺序影响权重，按照顺序依次减弱</li>
+<li>权重比例相对，3:1 = 6:2</li>
+</ul>
+</li>
+<li>顺序
+<ul>
+<li>明确主题：画面质量-&gt;主要元素-&gt;细节</li>
+<li>明确风格：画面质量-&gt;风格-&gt;元素-&gt;细节</li>
+<li>景色在前，人物会变小，反之亦然</li>
+<li>参考顺序
+<ul>
+<li><code>画面质量，风格，主题，外表（发型、发色、衣服、眼睛、手臂、胸部、腿部....），情绪，姿势，背景</code></li>
+<li><code>（画面质量+风格+镜头效果+光照效果+主题+构图）+ 主体（人物&amp;对象+姿势+服装+道具）+ 细节（场景+环境+饰品+特征）</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>符号（可以用来改变提示词的权重）</li>
+</ul>
+<table><thead><tr><th style="text-align: center">符号</th><th style="text-align: center">介绍</th><th style="text-align: center">格式</th><th>eg</th></tr></thead><tbody>
+<tr><td style="text-align: center">:</td><td style="text-align: center">自定义权重比例</td><td style="text-align: center">（prompt:数字）</td><td>（girl:0.8），权重0.8</td></tr>
+<tr><td style="text-align: center">and</td><td style="text-align: center">权重一致</td><td style="text-align: center"></td><td></td></tr>
+<tr><td style="text-align: center">|</td><td style="text-align: center">交替渲染</td><td style="text-align: center"></td><td></td></tr>
+<tr><td style="text-align: center">&lt;&gt;</td><td style="text-align: center">调用Lora模型</td><td style="text-align: center"><a href="lora:filename:%E6%95%B0%E5%AD%97">lora:filename:数字</a></td><td></td></tr>
+<tr><td style="text-align: center">[]</td><td style="text-align: center">交替渲染</td><td style="text-align: center">[prompt1:prompt2:0.5]</td><td>prompt1渲染到50%的时候，渲染开始prompt2</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">融合</td><td style="text-align: center">[prompt1｜prompt2]</td><td>融合1和2</td></tr>
+</tbody></table>
+<ul>
+<li>命令参数</li>
+</ul>
+<table><thead><tr><th style="text-align: center">命令</th><th style="text-align: center">解释</th></tr></thead><tbody>
+<tr><td style="text-align: center">--seed number</td><td style="text-align: center">种子</td></tr>
+<tr><td style="text-align: center">--aspect number: number</td><td style="text-align: center">宽高比</td></tr>
+<tr><td style="text-align: center">--version number</td><td style="text-align: center">版本</td></tr>
+<tr><td style="text-align: center">--chaos number</td><td style="text-align: center">多样性</td></tr>
+<tr><td style="text-align: center">--quality number</td><td style="text-align: center">质量</td></tr>
+<tr><td style="text-align: center">--sameseed</td><td style="text-align: center">相似值</td></tr>
+<tr><td style="text-align: center">--stop</td><td style="text-align: center">停止</td></tr>
+<tr><td style="text-align: center">--stylize number</td><td style="text-align: center">风格化</td></tr>
+<tr><td style="text-align: center">--iw</td><td style="text-align: center">图像权重</td></tr>
+<tr><td style="text-align: center">--uplight</td><td style="text-align: center">轻量放大器</td></tr>
+<tr><td style="text-align: center">--upbeta</td><td style="text-align: center">测试版放大器</td></tr>
+<tr><td style="text-align: center">--niji</td><td style="text-align: center">动漫模型</td></tr>
+<tr><td style="text-align: center">--test</td><td style="text-align: center">测试模型</td></tr>
+<tr><td style="text-align: center">--testp</td><td style="text-align: center">摄影测试模型</td></tr>
+<tr><td style="text-align: center">--hd</td><td style="text-align: center">高清模型</td></tr>
+<tr><td style="text-align: center">--repeat number</td><td style="text-align: center">重复</td></tr>
+</tbody></table>
+<p>参考：<a href="https://id8ex69uxy.feishu.cn/wiki/wikcn6VV58f94Wwt4hNuy7xex3e">https://id8ex69uxy.feishu.cn/wiki/wikcn6VV58f94Wwt4hNuy7xex3e</a></p>
+<h2 id="2-ti-shi-ci">2、提示词</h2>
+<table><thead><tr><th style="text-align: center">分类</th><th style="text-align: center">提示词</th></tr></thead><tbody>
+<tr><td style="text-align: center">动作姿势</td><td style="text-align: center">Arms Wide Open (双臂张开)<br />Leaning Forward (身体前倾，像鞠躬那样)<br />Sitting on a Chair(坐在椅子上)<br />Hand on Hip (手叉腰)<br />Hand in Pocket (手插兜)<br />Crossed Arms (双臂交叉)<br />Crossed Legs (翘二郎腿)<br />Kneeling (跪地)<br />Hands Up (双手举起来)<br />Arms Up (双臂高举)<br />Arms Behind Back (双臂放在身后)<br />Salute (敬礼)<br />Jumping (跳跃)<br />All Fours (四肢着地，爬行姿势)<br />Yoga Pose (瑜伽姿势)<br />High Kicks (高踢腿)<br />Leaning Against a Wall (靠在墙上)<br />Looking Back Over Shoulder (回头看)<br />Running (跑步)<br />Squatting（蹲着）<br />Catwalk Pose (T型台走秀姿势)<br />Hand Wave (挥手)<br />Fighting Stance(战斗姿势)<br />Standing on One Leg (单腿站立)</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center"></td></tr>
+</tbody></table>
+<h2 id="3-ti-shi-ci-cha-jian">3、提示词插件</h2>
+<ul>
+<li><a href="https://github.com/picobyte/stable-diffusion-webui-wd14-tagger">stable-diffusion-webui-wd14-tagger</a></li>
+</ul>
+<p>可以根据图片反推提示词</p>
+<p><img src="https://github.com/picobyte/stable-diffusion-webui-wd14-tagger/raw/master/docs/screenshot.png" alt="" /></p>
+<ul>
+<li><a href="https://github.com/studyzy/sd-prompt-translator">sd-prompt-translator</a></li>
+</ul>
+<p>汉化后的提示词选择器</p>
+<p><img src="https://king-key.github.io/Blog/2023/Q4/zen-me-xie-ti-shi-ci/./image-20231125112303212-0882586.png" alt="" /></p>
+<ul>
+<li><a href="https://github.com/lijialong1313/sdweb-easy-prompt-selector">sdweb-easy-prompt-selector</a></li>
+</ul>
+<p>提示词翻译插件，可以直接用中文写提示词</p>
+<p><img src="https://github.com/studyzy/sd-prompt-translator/raw/main/UI.png" alt="" /></p>
+<h2 id="4-guan-yu-fen-bian-lu">4、关于分辨率</h2>
+<ul>
+<li>正方形（1024x1024）： 这是默认分辨率，适合大多数普通图像。</li>
+<li>宽屏（1792x1024）： 适合风景、全景或任何需要水平方向的图像。</li>
+<li>高（1024x1792）： 最适合全身肖像、高大结构或任何需要垂直方向的图像。</li>
+</ul>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-11-24</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

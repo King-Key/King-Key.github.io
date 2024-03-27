@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • Python中一些好用的扩展包</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;pythonzhong-yi-xie-hao-yong-de-kuo-zhan-bao&#x2F;">Python中一些好用的扩展包</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-04-04 12:04:01</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>正所谓“工欲善其事，必先利其器”。推荐几个常用的、且非常方便的Python扩展库</p>
+</blockquote>
+<h2 id="1-pqi">1、<a href="https://pypi.org/project/pqi/">pqi</a></h2>
+<blockquote>
+<p>pqi解决pip安装速度较慢的问题</p>
+</blockquote>
+<p>pip安装默认的软件源是国外的，下载起来速度很慢，而将软件源换成国内的镜像源之后，可以提高下载速度。手动编辑源文件比较麻烦，pqi则可以帮助我们直接切换软件源。</p>
+<ul>
+<li>
+<p>安装<code>pip install pqi</code></p>
+</li>
+<li>
+<p>使用方法</p>
+</li>
+</ul>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>Usage:
+</span><span>  pqi ls
+</span><span>  pqi use &lt;name&gt;
+</span><span>  pqi show
+</span><span>  pqi add &lt;name&gt; &lt;url&gt;
+</span><span>  pqi remove &lt;name&gt;
+</span><span>  pqi (-h | --help)
+</span><span>  pqi (-v | --version)
+</span><span>Options:
+</span><span>  -h --help        Show this screen.
+</span><span>  -v --version     Show version.
+</span></code></pre>
+<p>查看当前的pip软件源<code>pqi show</code></p>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>Current source is aliyun(https://mirrors.aliyun.com/pypi/simple/).
+</span></code></pre>
+<p>pqi中内置了5个软件源<code>pqi ls</code></p>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>pypi 	 https://pypi.python.org/simple/
+</span><span>tuna 	 https://pypi.tuna.tsinghua.edu.cn/simple
+</span><span>douban 	 http://pypi.douban.com/simple/
+</span><span>aliyun 	 https://mirrors.aliyun.com/pypi/simple/
+</span><span>ustc 	 https://mirrors.ustc.edu.cn/pypi/web/simple
+</span></code></pre>
+<p>切换软件源<code>pqi use [url name]</code>，比如<code> pqi use douban</code>，这样再查看软件源粉时候就发现已经切换了。</p>
+<h2 id="2-pipreqs">2、<a href="https://pypi.org/project/pipreqs/">pipreqs</a></h2>
+<blockquote>
+<p>pipreqs可以生成Python依赖包清单，也就是导出requirements.txt文件</p>
+</blockquote>
+<p>与<code>pip freeze &gt; requirements.txt</code>的功能类似，但pipreqs只导出<strong>指定项目所依赖的组件及其版本👌</strong>，相比于前者导出<strong>当前python环境下所有安装的组件</strong>，pipsegs的导出会更轻量化。</p>
+<ul>
+<li>安装<code>pip install pipreqs</code></li>
+<li>使用方法</li>
+</ul>
+<p><code>pipreqs 项目路径</code>，比如<code>pipreqs ./</code>。</p>
+<ul>
+<li>对比一下freeze和pipreqs</li>
+</ul>
+<table><thead><tr><th style="text-align: center"><code>pip list</code></th><th style="text-align: center"><code>pip freeze &gt; requirements.txt</code></th><th style="text-align: center"><code>pipreqs ./</code></th></tr></thead><tbody>
+<tr><td style="text-align: center">aiofiles              23.1.0<br/>altair                4.2.2<br/>anyio                 3.6.2<br/>attrs                 22.2.0<br/>blinker               1.5<br/>cachetools            5.3.0<br/>certifi               2022.12.7<br/>charset-normalizer    3.1.0<br/>ci-info               0.3.0<br/>click                 8.1.3<br/>configobj             5.0.8<br/>configparser          5.3.0<br/>decorator             5.1.1<br/>entrypoints           0.4<br/>etelemetry            0.3.0<br/>filelock              3.10.7<br/>fitz                  0.0.1.dev2<br/>frontend              0.0.3<br/>future                0.18.3<br/>gitdb                 4.0.10<br/>GitPython             3.1.31<br/>h11                   0.14.0<br/>httplib2              0.22.0<br/>idna                  3.4<br/>importlib-metadata    6.1.0<br/>isodate               0.6.1<br/>itsdangerous          2.1.2<br/>Jinja2                3.1.2<br/>jsonschema            4.17.3<br/>looseversion          1.1.2<br/>lxml                  4.9.2<br/>markdown-it-py        2.2.0<br/>MarkupSafe            2.1.2<br/>mdurl                 0.1.2<br/>networkx              3.0<br/>nibabel               5.0.1<br/>nipype                1.8.5<br/>numpy                 1.24.2<br/>packaging             23.0<br/>pandas                1.5.3<br/>pathlib               1.0.1<br/>Pillow                9.4.0<br/>pip                   22.0.2<br/>protobuf              3.20.3<br/>prov                  2.0.0<br/>pyarrow               11.0.0<br/>pydeck                0.8.0<br/>pydot                 1.4.2<br/>Pygments              2.14.0<br/>Pympler               1.0.1<br/>PyMuPDF               1.21.1<br/>pyparsing             3.0.9<br/>pyrsistent            0.19.3<br/>python-dateutil       2.8.2<br/>pytils                0.4.1<br/>pytz                  2022.7.1<br/>pytz-deprecation-shim 0.1.0.post0<br/>pyxnat                1.5<br/>rdflib                6.3.1<br/>requests              2.28.2<br/>rich                  13.3.2<br/>scipy                 1.10.1<br/>semver                2.13.0<br/>setuptools            59.6.0<br/>simplejson            3.18.4<br/>six                   1.16.0<br/>smmap                 5.0.0<br/>sniffio               1.3.0<br/>starlette             0.26.1<br/>stqdm                 0.0.5<br/>streamlit             1.20.0<br/>toml                  0.10.2<br/>tools                 0.1.9<br/>toolz                 0.12.0<br/>tornado               6.2<br/>tqdm                  4.65.0<br/>traits                6.3.2<br/>typing_extensions     4.5.0<br/>tzdata                2022.7<br/>tzlocal               4.3<br/>urllib3               1.26.15<br/>uvicorn               0.21.1<br/>validators            0.20.0<br/>watchdog              3.0.0<br/>wheel                 0.37.1<br/>zipp                  3.15.0</td><td style="text-align: center">aiofiles==23.1.0<br/>altair==4.2.2<br/>anyio==3.6.2<br/>attrs==22.2.0<br/>blinker==1.5<br/>cachetools==5.3.0<br/>certifi==2022.12.7<br/>charset-normalizer==3.1.0<br/>ci-info==0.3.0<br/>click==8.1.3<br/>configobj==5.0.8<br/>configparser==5.3.0<br/>decorator==5.1.1<br/>entrypoints==0.4<br/>etelemetry==0.3.0<br/>filelock==3.10.7<br/>fitz==0.0.1.dev2<br/>frontend==0.0.3<br/>future==0.18.3<br/>gitdb==4.0.10<br/>GitPython==3.1.31<br/>h11==0.14.0<br/>httplib2==0.22.0<br/>idna==3.4<br/>importlib-metadata==6.1.0<br/>isodate==0.6.1<br/>itsdangerous==2.1.2<br/>Jinja2==3.1.2<br/>jsonschema==4.17.3<br/>looseversion==1.1.2<br/>lxml==4.9.2<br/>markdown-it-py==2.2.0<br/>MarkupSafe==2.1.2<br/>mdurl==0.1.2<br/>networkx==3.0<br/>nibabel==5.0.1<br/>nipype==1.8.5<br/>numpy==1.24.2<br/>packaging==23.0<br/>pandas==1.5.3<br/>pathlib==1.0.1<br/>Pillow==9.4.0<br/>protobuf==3.20.3<br/>prov==2.0.0<br/>pyarrow==11.0.0<br/>pydeck==0.8.0<br/>pydot==1.4.2<br/>Pygments==2.14.0<br/>Pympler==1.0.1<br/>PyMuPDF==1.21.1<br/>pyparsing==3.0.9<br/>pyrsistent==0.19.3<br/>python-dateutil==2.8.2<br/>pytils==0.4.1<br/>pytz==2022.7.1<br/>pytz-deprecation-shim==0.1.0.post0<br/>pyxnat==1.5<br/>rdflib==6.3.1<br/>requests==2.28.2<br/>rich==13.3.2<br/>scipy==1.10.1<br/>semver==2.13.0<br/>simplejson==3.18.4<br/>six==1.16.0<br/>smmap==5.0.0<br/>sniffio==1.3.0<br/>starlette==0.26.1<br/>stqdm==0.0.5<br/>streamlit==1.20.0<br/>toml==0.10.2<br/>tools==0.1.9<br/>toolz==0.12.0<br/>tornado==6.2<br/>tqdm==4.65.0<br/>traits==6.3.2<br/>typing_extensions==4.5.0<br/>tzdata==2022.7<br/>tzlocal==4.3<br/>urllib3==1.26.15<br/>uvicorn==0.21.1<br/>validators==0.20.0<br/>watchdog==3.0.0<br/>zipp==3.15.0</td><td style="text-align: center">PyMuPDF==1.21.1<br />streamlit==1.20.0</td></tr>
+</tbody></table>
+<h2 id="3-streamlit">3、<a href="https://streamlit.io/">Streamlit</a></h2>
+<blockquote>
+<p>Streamlit主要用来创建App，并且可以方便的和Python结合以及部署。相关的安装使用可以参考之前的文章</p>
+</blockquote>
+<p>{% link Streamlit App创建,Guo Wang,https://King-Key.github.io/posts/34479.html%}</p>
+<p>{% link Streamlit App多页面运行,Guo Wang,https://King-Key.github.io/posts/22558.html%}</p>
+<p>{% link streamlit cloud部署一个streamlit App,Guo Wang,https://King-Key.github.io/posts/cda857c1.html%}</p>
+<h2 id="4-tqdm">4、<a href="https://tqdm.github.io/">tqdm</a></h2>
+<blockquote>
+<p>tqdm是一个进度条模块</p>
+</blockquote>
+<ul>
+<li>安装<code>pip install tqdm</code></li>
+<li>使用方法，在Python文件中直接引入使用即可</li>
+</ul>
+<p><img src="https://img.tqdm.ml/tqdm.gif" alt="" /></p>
+<center>官方demo演示</center>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-04-04</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

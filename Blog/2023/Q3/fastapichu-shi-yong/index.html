@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • 🖋 fastapi初使用</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q3&#x2F;fastapichu-shi-yong&#x2F;">🖋 fastapi初使用</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-07-10 07:07:28</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>fastapi 是一个基于 Python 的 API 构建框架，简单且易用！</p>
+</blockquote>
+<!--more-->
+<h4 id="1-an-zhuang">1、安装</h4>
+<p>安装，主要分为两部分：</p>
+<p>1）<code>fastapi</code>：<code> pip install fastapi</code></p>
+<p>2）<code>uvicorn</code>:<code> pip install uvicorn</code>。服务器端，可以用来运行fastapi的代码。</p>
+<p>也可以一起安装<code>pip install fastapi[all]</code></p>
+<h4 id="2-apishi-xian">2、api实现</h4>
+<pre data-lang="python" style="background-color:#eff1f5;color:#4f5b66;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>typing </span><span style="color:#b48ead;">import </span><span>Union
+</span><span style="color:#b48ead;">from </span><span>fastapi </span><span style="color:#b48ead;">import </span><span>FastAPI
+</span><span>
+</span><span>app = </span><span style="color:#bf616a;">FastAPI</span><span>()
+</span><span>
+</span><span>@app.</span><span style="color:#bf616a;">get</span><span>(&quot;</span><span style="color:#a3be8c;">/1</span><span>&quot;)
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_root</span><span>():
+</span><span>    </span><span style="color:#b48ead;">return </span><span>(&quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;)
+</span></code></pre>
+<h5 id="app-get-1"><code>app.get(&quot;/1)</code></h5>
+<p>api路径引入,也就是用 1 调用 read_root函数，最终返回一个 hello。
+<img src="https://king-key.github.io/Blog/2023/Q3/fastapichu-shi-yong/./image.png" alt="Alt text" /></p>
+<h5 id="app-get-a"><code>app.get(&quot;/{a})</code></h5>
+<pre data-lang="PYTHON" style="background-color:#eff1f5;color:#4f5b66;" class="language-PYTHON "><code class="language-PYTHON" data-lang="PYTHON"><span>@app.</span><span style="color:#bf616a;">get</span><span>(&quot;</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{a}</span><span>&quot;)
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_root</span><span>(</span><span style="color:#bf616a;">a</span><span>:int):
+</span><span>    </span><span style="color:#b48ead;">return </span><span>(&quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;)
+</span></code></pre>
+<p>也可以输入值,当输入一个int型参数，调用 read_root函数，返回一个 hello。
+<img src="https://king-key.github.io/Blog/2023/Q3/fastapichu-shi-yong/./image1.png" alt="Alt text" /></p>
+<h5 id="app-get-a-b"><code>@app.get(&quot;/{a}+{b}&quot;)</code></h5>
+<pre data-lang="python" style="background-color:#eff1f5;color:#4f5b66;" class="language-python "><code class="language-python" data-lang="python"><span>@app.</span><span style="color:#bf616a;">get</span><span>(&quot;</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{a}</span><span style="color:#a3be8c;">+</span><span style="color:#d08770;">{b}</span><span>&quot;)
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_root</span><span>(</span><span style="color:#bf616a;">a</span><span>:int,</span><span style="color:#bf616a;">b</span><span>:int):
+</span><span>    </span><span style="color:#b48ead;">return </span><span>(a+b)
+</span></code></pre>
+<p>实现一个<code>a+b</code>的API。</p>
+<p><img src="https://king-key.github.io/Blog/2023/Q3/fastapichu-shi-yong/./image2.png" alt="Alt text" /></p>
+<h5 id="han-shu-he-apifen-chi">函数和api分离</h5>
+<p>不可能把所有的api函数都放在一个<code>.py</code>文件中，在<code>python</code>文件中可以通过<code>import</code>调用函数。</p>
+<ul>
+<li>
+<p><code>sum.py</code>,定义了一个<code>add</code>函数，实现<code>a+b</code></p>
+<pre data-lang="python" style="background-color:#eff1f5;color:#4f5b66;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">add</span><span>(</span><span style="color:#bf616a;">a</span><span>,</span><span style="color:#bf616a;">b</span><span>):
+</span><span>  </span><span style="color:#96b5b4;">print</span><span>(a+b)
+</span><span>  </span><span style="color:#b48ead;">return </span><span>a+b
+</span></code></pre>
+</li>
+<li>
+<p><code>main.py</code>,调用<code>add</code>函数</p>
+<pre data-lang="python" style="background-color:#eff1f5;color:#4f5b66;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>typing </span><span style="color:#b48ead;">import </span><span>Union
+</span><span style="color:#b48ead;">from </span><span>fastapi </span><span style="color:#b48ead;">import </span><span>FastAPI
+</span><span>
+</span><span style="color:#b48ead;">from </span><span>num </span><span style="color:#b48ead;">import </span><span>add
+</span><span>
+</span><span>app = </span><span style="color:#bf616a;">FastAPI</span><span>()
+</span><span>
+</span><span>@app.</span><span style="color:#bf616a;">get</span><span>(&quot;</span><span style="color:#a3be8c;">/</span><span style="color:#d08770;">{a}</span><span style="color:#a3be8c;">+</span><span style="color:#d08770;">{b}</span><span>&quot;)
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_root</span><span>(</span><span style="color:#bf616a;">a</span><span>:int,</span><span style="color:#bf616a;">b</span><span>:int):
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">add</span><span>(a,b)
+</span></code></pre>
+<p><img src="https://king-key.github.io/Blog/2023/Q3/fastapichu-shi-yong/./image3.png" alt="Alt text" /></p>
+</li>
+</ul>
+<h4 id="3-yun-xing">3、运行</h4>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>uvicorn main:app --reload
+</span></code></pre>
+<p>ok，结束！</p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-07-10</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

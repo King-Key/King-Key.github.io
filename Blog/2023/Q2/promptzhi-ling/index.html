@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • chatgpt prompt学习</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;promptzhi-ling&#x2F;">chatgpt prompt学习</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-06-01 17:06:14</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>怎么可以用好ChatGPT，prompt是关键！</p>
+</blockquote>
+<!--more-->
+<h4 id="1-promptde-ji-ben-yuan-ze">1、prompt的基本原则</h4>
+<ul>
+<li>开头提供明确说明，有助于为模型设置上下文</li>
+<li>指定预期答案的格式类型</li>
+<li>可以加入系统消息或角色扮演技术增强交互</li>
+</ul>
+<h4 id="2-ji-chu-promptgong-cheng-ce-lue">2、基础prompt工程策略</h4>
+<ul>
+<li>正确的prompt关键词</li>
+<li>简洁的prompt</li>
+<li>角色分配和目标设置，也就是需要明确一个具体场景</li>
+<li>正负提示，即告诉模型应该<strong>这样做</strong>、<strong>不这样做</strong></li>
+</ul>
+<h4 id="3-gao-ji-ce-lue">3、高级策略</h4>
+<ul>
+<li>输入/输出prompt：给模型说明输入什么，输入什么</li>
+<li>Zero-shot prompt：零样本，模糊的提问</li>
+<li>One-shot prompt：给模型一个样例</li>
+<li>Few-shot prompt：给模型多个样例</li>
+<li>思维链 Prompt：给模型一个事件的推理的过程，引导模型按此进行推理</li>
+<li>Self-Criticism prompt策略：引导模型对其输出进行评估并进行改进</li>
+<li>迭代prompt策略：逐步引导</li>
+<li>与模型合作
+<ul>
+<li>prompt的prompt：让模型生成prompt的建议</li>
+<li>模型引导prompt：给定模型结果，让模型反推输入过程</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-promptan-li">4、prompt案例</h4>
+<ul>
+<li>图片生成</li>
+</ul>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>接下来我会给你指令，生成相应的图片，我希望你用Markdown语言生成，不要用反引号，不要用代码框，你需要用Unsplash API，遵循以下的格式：https://source.unsplash.com/1600x900/?&lt; PUT YOUR QUERY HERE &gt;。你明白了吗？
+</span></code></pre>
+<ul>
+<li>对话思考</li>
+</ul>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>我是【角色】，正在【做什么】，目标是【什么】，请你以提问的方式向我提出你认为达成该目标最重要的数量【5】个关键性问题
+</span></code></pre>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-06-01</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

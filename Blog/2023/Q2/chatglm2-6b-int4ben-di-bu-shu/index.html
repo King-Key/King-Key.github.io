@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • 🖋 ChatGLM2-6B-Int4本地部署</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;chatglm2-6b-int4ben-di-bu-shu&#x2F;">🖋 ChatGLM2-6B-Int4本地部署</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-06-29 11:06:27</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>ChatGLM2-6B 是开源中英双语对话模型 ChatGLM-6B 的第二代版本
+GitHub地址：https://github.com/THUDM/ChatGLM2-6B</p>
+</blockquote>
+<h4 id="1-xian-kan-xiao-guo">1、先看效果</h4>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./chatglm.gif" alt="在这里插入图片描述" /></p>
+<h4 id="2-chatglm2-6bxin-te-xing">2、ChatGLM2-6B新特性</h4>
+<ul>
+<li>
+<p>更强大的性能：基于 ChatGLM 初代模型的开发经验，我们全面升级了 ChatGLM2-6B 的基座模型。ChatGLM2-6B 使用了 GLM 的混合目标函数，经过了 1.4T 中英标识符的预训练与人类偏好对齐训练，评测结果显示，相比于初代模型，ChatGLM2-6B 在 MMLU（+23%）、CEval（+33%）、GSM8K（+571%） 、BBH（+60%）等数据集上的性能取得了大幅度的提升，在同尺寸开源模型中具有较强的竞争力。</p>
+</li>
+<li>
+<p>更长的上下文：基于 FlashAttention 技术，我们将基座模型的上下文长度（Context Length）由 ChatGLM-6B 的 2K 扩展到了 32K，并在对话阶段使用 8K 的上下文长度训练，允许更多轮次的对话。但当前版本的 ChatGLM2-6B 对单轮超长文档的理解能力有限，我们会在后续迭代升级中着重进行优化。</p>
+</li>
+<li>
+<p>更高效的推理：基于 Multi-Query Attention 技术，ChatGLM2-6B 有更高效的推理速度和更低的显存占用：在官方的模型实现下，推理速度相比初代提升了 42%，INT4 量化下，6G 显存支持的对话长度由 1K 提升到了 8K。</p>
+</li>
+<li>
+<p>更开放的协议：ChatGLM2-6B 权重对学术研究完全开放，在获得官方的书面许可后，亦允许商业使用。如果您发现我们的开源模型对您的业务有用，我们欢迎您对下一代模型 ChatGLM3 研发的捐赠。</p>
+</li>
+</ul>
+<h4 id="3-ben-di-bu-shu-chatglm2-6b-int4">3、本地部署(ChatGLM2-6B-int4)</h4>
+<h5 id="bu-shu-huan-jing">部署环境</h5>
+<pre style="background-color:#eff1f5;color:#4f5b66;"><code><span>wsl2-ubuntu22.04 LTS
+</span><span>
+</span><span>+-----------------------------------------------------------------------------+
+</span><span>| NVIDIA-SMI 525.104      Driver Version: 528.79       CUDA Version: 12.0     |
+</span><span>|-------------------------------+----------------------+----------------------+
+</span><span>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span>|                               |                      |               MIG M. |
+</span><span>|===============================+======================+======================|
+</span><span>|   0  NVIDIA GeForce ...  On   | 00000000:01:00.0  On |                  N/A |
+</span><span>| N/A   45C    P8     5W /  80W |    928MiB /  6144MiB |      3%      Default |
+</span><span>|                               |                      |                  N/A |
+</span><span>+-------------------------------+----------------------+----------------------+
+</span><span>
+</span><span>+-----------------------------------------------------------------------------+
+</span><span>| Processes:                                                                  |
+</span><span>|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+</span><span>|        ID   ID                                                   Usage      |
+</span><span>|=============================================================================|
+</span><span>|    0   N/A  N/A        23      G   /Xwayland                       N/A      |
+</span><span>+-----------------------------------------------------------------------------+
+</span></code></pre>
+<h5 id="xia-zai">下载</h5>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>git clone https://github.com/THUDM/ChatGLM2-6B
+</span><span>cd ChatGLM2-6B
+</span></code></pre>
+<h5 id="chuang-jian-xu-ni-huan-jing-an-zhuang-ku">创建虚拟环境，安装库</h5>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>virtualenv venv
+</span><span>source venv/bin/activate
+</span><span>
+</span><span>pip install -r requirements.txt
+</span></code></pre>
+<h5 id="ben-di-mo-xing-xia-zai">本地模型下载</h5>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>git clone https://huggingface.co/THUDM/chatglm2-6b-int4
+</span></code></pre>
+<p>然后在<a href="https://cloud.tsinghua.edu.cn/d/674208019e314311ab5c/?p=%2F&amp;mode=list">清华大学云盘</a>下载相应的模型参数文件,并将文件拷贝到chatglm2-6b-int4文件夹下</p>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./1.png" alt="在这里插入图片描述" /></p>
+<h5 id="int-4tui-li">int-4推理</h5>
+<p>需要先修改web_demo.py,修改内容</p>
+<pre data-lang="python" style="background-color:#eff1f5;color:#4f5b66;" class="language-python "><code class="language-python" data-lang="python"><span>//第7行,修改为本地模型参数地址
+</span><span>
+</span><span style="color:#a7adba;"># model = AutoModel.from_pretrained(&quot;THUDM/chatglm2-6b-int4&quot;, trust_remote_code=True).cuda()
+</span><span>
+</span><span>model = AutoModel.</span><span style="color:#bf616a;">from_pretrained</span><span>(&quot;</span><span style="color:#a3be8c;">./chatglm2-6b-int4</span><span>&quot;, </span><span style="color:#bf616a;">trust_remote_code</span><span>=</span><span style="color:#d08770;">True</span><span>).</span><span style="color:#bf616a;">cuda</span><span>()
+</span><span>
+</span></code></pre>
+<h5 id="web-demo-py"><code>web_demo.py</code></h5>
+<p>执行</p>
+<pre data-lang="sheLL" style="background-color:#eff1f5;color:#4f5b66;" class="language-sheLL "><code class="language-sheLL" data-lang="sheLL"><span>python web_demo.py
+</span></code></pre>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./2.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./3.png" alt="在这里插入图片描述" /></p>
+<h5 id="yu-dao-de-wen-ti">遇到的问题</h5>
+<blockquote>
+<p>问题1</p>
+</blockquote>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>OSError: model/chatglm2-6b is not a local folder and is not a valid model identifier listed on &#39;https://huggingface.co/models&#39;
+</span><span>If this is a private repository, make sure to pass a token having permission to this repo with `use_auth_token` or log in with `huggingface-cli login` and pass `use_auth_token=True`.
+</span></code></pre>
+<p>-- 解决，输入</p>
+<pre style="background-color:#eff1f5;color:#4f5b66;"><code><span>huggingface-cli login 
+</span></code></pre>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./4.png" alt="在这里插入图片描述" /></p>
+<p>并点击链接生成<strong>new token</strong>,拷贝到shell中输入即可
+<img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./5.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/chatglm2-6b-int4ben-di-bu-shu/./6.png" alt="在这里插入图片描述" /></p>
+<blockquote>
+<p>问题2</p>
+</blockquote>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>RuntimeError: Internal: src/sentencepiece_processor.cc(1101) [model_proto-&gt;ParseFromArray(serialized.data(), serialized.size())]
+</span></code></pre>
+<p>-- 解决，输入</p>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>sudo apt install libcudart11.0 libcublaslt11
+</span></code></pre>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-06-29</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

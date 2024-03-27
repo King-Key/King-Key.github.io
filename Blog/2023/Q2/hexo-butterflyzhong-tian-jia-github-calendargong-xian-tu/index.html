@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • hexo butterfly主题中添加github calendar贡献图</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu&#x2F;">hexo butterfly主题中添加github calendar贡献图</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-04-09 21:04:04</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>个性化博客</p>
+</blockquote>
+<h4 id="1-xian-lai-kan-yi-xia-xiao-guo">1、先来看一下效果</h4>
+<p><a href="https://King-Key.github.io/">Wang Guo's Blog</a></p>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu/./image-20230409215932257-16810487751371.png" alt="image-20230409215932257" /></p>
+<h4 id="2-an-zhuang">2、安装</h4>
+<ul>
+<li>建议直接安装插件，省事也方便</li>
+</ul>
+<pre data-lang="she" style="background-color:#eff1f5;color:#4f5b66;" class="language-she "><code class="language-she" data-lang="she"><span>npm i hexo-githubcalendar --save
+</span></code></pre>
+<ul>
+<li>在博客项目根目录的<code>_config.yml</code>文件中添加</li>
+</ul>
+<pre data-lang="yaml" style="background-color:#eff1f5;color:#4f5b66;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#a7adba;"># butterfly
+</span><span style="color:#bf616a;">githubcalendar</span><span>:
+</span><span>  </span><span style="color:#bf616a;">enable</span><span>: </span><span style="color:#d08770;">true
+</span><span>  </span><span style="color:#bf616a;">priority</span><span>: </span><span style="color:#d08770;">3
+</span><span>  </span><span style="color:#bf616a;">enable_page</span><span>: </span><span style="color:#a3be8c;">/
+</span><span>  </span><span style="color:#bf616a;">user</span><span>: [</span><span style="color:#a3be8c;">github name</span><span>]
+</span><span>  </span><span style="color:#bf616a;">layout</span><span>:
+</span><span>    </span><span style="color:#bf616a;">type</span><span>: </span><span style="color:#a3be8c;">id
+</span><span>    </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">recent-posts
+</span><span>    </span><span style="color:#bf616a;">index</span><span>: </span><span style="color:#d08770;">0
+</span><span>  </span><span style="color:#bf616a;">githubcalendar_html</span><span>: &#39;</span><span style="color:#a3be8c;">&lt;div class=&quot;recent-post-item&quot; style=&quot;width:100%;height:auto;padding:10px;&quot;&gt;&lt;div id=&quot;github_loading&quot; style=&quot;height:100%;display: flex;align-items: center;justify-content: center;&quot;&gt;&lt;svg style=&quot;height:50px&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;  viewBox=&quot;0 0 50 50&quot; style=&quot;enable-background:new 0 0 50 50&quot; xml:space=&quot;preserve&quot;&gt;&lt;path fill=&quot;#d0d0d0&quot; d=&quot;M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z&quot; transform=&quot;rotate(275.098 25 25)&quot;&gt;&lt;animateTransform attributeType=&quot;xml&quot; attributeName=&quot;transform&quot; type=&quot;rotate&quot; from=&quot;0 25 25&quot; to=&quot;360 25 25&quot; dur=&quot;0.6s&quot; repeatCount=&quot;indefinite&quot;&gt;&lt;/animateTransform&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div id=&quot;github_container&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span><span>&#39;  </span><span style="color:#bf616a;">pc_minheight</span><span>: </span><span style="color:#a3be8c;">248px
+</span><span>  </span><span style="color:#bf616a;">mobile_minheight</span><span>: </span><span style="color:#a3be8c;">0px
+</span><span>  </span><span style="color:#bf616a;">color</span><span>: &quot;</span><span style="color:#a3be8c;">[&#39;#ebedf0&#39;, &#39;#c8e1ff&#39;, &#39;#79b8ff&#39;, &#39;#2188ff&#39;, &#39;#0366d6&#39;, &#39;#005cc5&#39;, &#39;#044289&#39;, &#39;#032f62&#39;, &#39;#05264c&#39;]</span><span>&quot; </span><span style="color:#a7adba;">#天青色调  
+</span><span>  </span><span style="color:#bf616a;">api</span><span>: [</span><span style="color:#a3be8c;">api link</span><span>]
+</span><span>  </span><span style="color:#bf616a;">calendar_js</span><span>: </span><span style="color:#a3be8c;">https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js
+</span><span>  </span><span style="color:#bf616a;">plus_style</span><span>: &quot;&quot;
+</span></code></pre>
+<ul>
+<li><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s  </code>三连即可</li>
+</ul>
+<h4 id="3-zui-zhong-yao-de">3、最重要的</h4>
+<ul>
+<li><code>user:</code>填写个人<code>github</code>账号名称即可</li>
+<li>关键是<code>api</code>的问题 </li>
+</ul>
+<p>首先，公用<code>api</code>不可用，只能自建；</p>
+<p>其次，自建<code>api</code>的具体教程可以参考<code>https://github.com/Zfour/hexo-github-calendar</code>。但是个人在实际部署中发现，无法正常得到数据，经过排查后是发现这个项目里面的原代码有点小问题</p>
+<table><thead><tr><th>原项目https://github.com/Zfour/hexo-github-calendar</th><th>本人修改后的https://github.com/King-Key/github_calendar_api</th></tr></thead><tbody>
+<tr><td><img src="https://king-key.github.io/Blog/2023/Q2/hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu/./image-20230409223638066-16810510008413.png" alt="image-20230409223638066" /></td><td><img src="https://king-key.github.io/Blog/2023/Q2/hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu/./image-20230409223828342-16810511105374.png" alt="image-20230409223828342" /></td></tr>
+</tbody></table>
+<p>最主要的区别就是13行的代码，在<code>github</code>首页的源代码中，我们就可以找到这个值是<code>data-level</code>，<code>data-level</code>是要统计的提交次数。</p>
+<p><img src="https://king-key.github.io/Blog/2023/Q2/hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu/./image-20230409224229938-16810513518315.png" alt="image-20230409224229938" /></p>
+<p>原项目的得到的值是错误的，在实际部署后没法显示。所以大家可以在自建<code>api</code>的时候记得修改这个内容，或者也可以直接<code>fork</code>我的项目自建<code>api</code>进行部署。</p>
+<p>https://github.com/King-Key/github_calendar_api</p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-04-09</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • 🖋 langchain初学习</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src=https://king-key.github.io/images/logo.png style="width:200px;" alt="logo" />
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          青稞社区创始人
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li>
+        <a href="https://qingkelab.github.io"><img src="https://qingkelab.github.io/talks/images/32x32.tiff" style="border-radius: 50%; width: 20px;height: 20px;margin-bottom: -3px;margin-right: -5px;"></a>
+      </li><li><a href="https://github.com/King-Key" aria-label="Go to Github profile page"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page"><i class="fab fa-twitter"></i></a></li><li><a class="link"  href="https://blog.csdn.net/King_key?type=blog"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li></div>
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+
+<script src=https://king-key.github.io/js/jquery-1.7.2.min.js></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+      $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+        $(".newh2").css("margin-left",0);
+        $(".newh3").css("margin-left",20);
+        $(".newh4").css("margin-left",40);
+        $(".newh5").css("margin-left",60);
+        $(".newh6").css("margin-left",80);
+      });
+ });
+
+ document.querySelectorAll('details summary').forEach(function(summary) {
+  summary.addEventListener('click', function() {
+    var details = this.nextElementSibling;
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<article class="post animated fadeInDown">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q3&#x2F;langchainchu-xue-xi&#x2F;">🖋 langchain初学习</a></h1>
+  <div class="info">
+    
+
+    
+    <i class="far fa-sun"></i>
+    <i>Push time : 2023-07-17 15:07:54</i><hr>
+    
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <content><div id="category"></div></content>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p><a href="https://docs.langchain.com/docs/">LangChain</a> is a framework for developing applications powered by language models(LangChain是一个由语言模型驱动的应用程序开发框架，旨在帮助开发人员使用语言模型构建端到端的应用程序)</p>
+</blockquote>
+<h2 id="1-yi-xie-gai-nian">1、一些概念</h2>
+<h3 id="components-and-chains">Components and Chains</h3>
+<ul>
+<li>Component 是模块化的构建块，可以组合起来创建强大的应用程序。</li>
+<li>Chain 是组合在一起以完成特定任务的一系列 Components。一个 Chain 可能包括一个 Prompt 模板、一个语言模型和一个输出解析器，它们一起工作以处理用户输入、生成响应并处理输出。</li>
+</ul>
+<h3 id="prompt-templates-and-values">Prompt Templates and Values</h3>
+<ul>
+<li>Prompt Templates 负责创建 PromptValue，这是最终传递给语言模型的内容。有助于将用户输入和其他动态信息转换为适合语言模型的格式。</li>
+<li>PromptValues 是具有方法的类，这些方法可以转换为每个模型类型期望的确切输入类型（如文本或聊天消息）。</li>
+</ul>
+<h3 id="example-selectors">Example Selectors</h3>
+<ul>
+<li>可以在 Prompt 中动态包含示例，接受用户输入并返回一个示例列表以在提示中使用，使其更强大和特定于上下文。</li>
+</ul>
+<h3 id="output-parsers">Output Parsers</h3>
+<ul>
+<li>负责将语言模型响应构建为更有用的格式，使得在应用程序中处理输出数据变得更加容易。实现了两种主要方法：
+<ul>
+<li>一种用于提供格式化指令。</li>
+<li>一种用于将语言模型的响应解析为结构化格式。</li>
+</ul>
+</li>
+</ul>
+<h3 id="indexes-and-retrievers">Indexes and Retrievers</h3>
+<ul>
+<li>Index 是一种组织文档的方式，使语言模型更容易与它们交互。</li>
+<li>Retrievers 是用于获取相关文档并将它们与语言模型组合的接口。</li>
+</ul>
+<blockquote>
+<p>LangChain 提供了用于处理不同类型的索引和检索器的工具和功能，例如矢量数据库和文本拆分器。</p>
+</blockquote>
+<h3 id="chat-message-history">Chat Message History</h3>
+<ul>
+<li>主要通过聊天界面与语言模型进行交互。</li>
+</ul>
+<blockquote>
+<p>ChatMessageHistory 类负责记住所有以前的聊天交互数据，然后可以将这些交互数据传递回模型、汇总或以其他方式组合。这有助于维护上下文并提高模型对对话的理解。</p>
+</blockquote>
+<h3 id="agents-and-toolkits">Agents and Toolkits</h3>
+<ul>
+<li>Agent 是在 LangChain 中推动决策制定的实体。他们可以访问一套工具，并可以根据用户输入决定调用哪个工具。</li>
+<li>Tookits 是一组工具，当它们一起使用时，可以完成特定的任务。代理执行器负责使用适当的工具运行代理。</li>
+</ul>
+<h3 id="langchain-model">LangChain model</h3>
+<p>LangChain 中的模型主要分为三类</p>
+<ul>
+<li><strong>LLM（大型语言模型）</strong>：可以将文本字符串作为输入并返回文本字符串作为输出。</li>
+<li><strong>聊天模型( Chat Model)</strong> ：将聊天消息列表作为输入并返回聊天消息。用于管理对话历史记录和维护上下文。</li>
+<li><strong>文本嵌入模型(Text Embedding Models)</strong> ：将文本作为输入并返回表示文本嵌入的浮点列表。用于文档检索、聚类和相似性比较等任务。</li>
+</ul>
+<h2 id="2-an-zhuang">2、安装</h2>
+<p><code> pip install langchain</code> or <code>pip install langchain[all]</code> or <code>pip install langchain[llm]</code></p>
+<p><code>zsh</code> 安装需要使用 <code>pip install 'langchain[all]' </code></p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 
+        <i class="far fa-sun"></i><span class="date">2023-07-17</span>
+         -->     
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+
+<div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: '14b6287703859431aea41d9b4483c9c438ac5a1a', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false 
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
