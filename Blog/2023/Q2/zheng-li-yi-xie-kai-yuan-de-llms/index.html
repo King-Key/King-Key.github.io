@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+
+  
+    <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+    <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <title>Wang Guo • 🔥 开源 LLMs&#x2F;MLLMs</title>
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+  
+  
+
+  <!-- JS for MathJax -->
+  <script>
+  window.MathJax = {
+    tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"], ]
+    },
+    startup: {
+    ready: () => {
+        // Function to iterate over all pre and code elements
+        // if they contain TeX/LaTeX code for maths as defined
+        // by the markers in tex settings above then copy their
+        // textContent before them and remove the element from
+        // the DOM. 
+        
+        // get pre and code elements
+        var prelist = document.getElementsByTagName("pre");
+        var codelist = document.getElementsByTagName("code");
+        // get delimiters for inline and display math
+        var inline = MathJax.config.tex.inlineMath;
+        var display = MathJax.config.tex.displayMath;
+        // start building  a RegExp for each of these math types
+        var inlineRegexList = [];
+        var displayRegexList =[];
+        for(i=0;i<inline.length;i++) {
+          // https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+          delimLEsc = inline[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+          //alert(delimLEsc);
+          delimREsc = inline[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+          inlineRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
+        };
+        for(i=0;i<display.length;i++) {
+          // https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+          delimLEsc = display[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+          //alert(delimLEsc);
+          delimREsc = display[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+          displayRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
+        };
+        inlineRegExp = new RegExp(inlineRegexList.join("|"));
+        displayRegExp = new RegExp(displayRegexList.join("|"));
+        
+        // iterate over pre elements applying RegExp
+        // iterate "backwards" as we are removing elements!
+        for (i=prelist.length; i>0; i--) {
+          if(displayRegExp.test(prelist[i-1].textContent)) {
+            var t = document.createTextNode(prelist[i-1].textContent);
+            prelist[i-1].parentNode.insertBefore(t,prelist[i-1]);
+            prelist[i-1].parentNode.removeChild(prelist[i-1]);
+          }
+        }
+        // iterate over code elements applying RegExp
+        // iterate "backwards" as we are removing elements!
+        for (i=codelist.length; i>0; i--) {
+          if(inlineRegExp.test(codelist[i-1].textContent)) {
+            var t = document.createTextNode(codelist[i-1].textContent);
+            codelist[i-1].parentNode.insertBefore(t,codelist[i-1]);
+            codelist[i-1].parentNode.removeChild(codelist[i-1]);
+          }
+        }
+      // Now process the page in MathJax
+      MathJax.startup.defaultReady();
+    }
+    }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" />
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>
+          ---
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><i class="fab fa-github"></i></a></li>
+      
+      <li><a href="https://twitter.com/KingKey113" aria-label="Go to Twitter profile page" title="X"><i class="fab fa-twitter"></i></a></li>
+
+      <li><a class="link"  href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><i class="fa-solid fa-c"></i></a></li>
+
+      
+      
+    </ul>
+
+    <div class="footer">
+      
+     <!--  <span>Designed by </span><a href="https://king-key.github.io">CaiCai</a>
+      <div class="by_zola"><a href="https://www.getzola.org/" target="_blank">Proudly published with Zola!</a></div> -->
+
+
+
+      <div class="globe_css">
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="main">
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li><li><a  href="https://king-key.github.io/tags">Tags</a></li><li><a 
+            href="https://king-key.github.io/archive/">Archive</a></li>
+
+        <li><a  href="https://king-key.github.io/about/">About</a></li><li><a  href="https://king-key.github.io/link/">Links</a></li><li><a href="https://qingkelab.github.io" style="text-align: right;">QingKe.AI</a></li>
+
+        <li>
+          <span id="search-ico" class="ms-Icon--Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+        </li>
+
+        <div class="search-overlay">
+          <button id="close-search" class="close-button">✖</button> <!-- 关闭按钮 -->
+          <div class="search-container">
+            <input type="text" id="search" placeholder="Search..."/>
+            <ul class="search-results">
+              <h2 class="search-results__header"></h2>
+              <ul class="search-results__items"></ul>
+            </ul>
+          </div>
+        </div>
+        </div>
+
+
+
+    </div>
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+<script src="https://king-key.github.io/js/jquery-1.7.2.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;zheng-li-yi-xie-kai-yuan-de-llms&#x2F;">🔥 开源 LLMs&#x2F;MLLMs</a></h1>
+  <div class="info">
+    
+    
+    
+      <i class="far fa-sun"></i>
+      <i>Push time: 2023-04-06 16:06:03&nbsp;&nbsp;</i>
+    
+    
+    <i class="fa-regular fa-comment"></i>
+    <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;zheng-li-yi-xie-kai-yuan-de-llms&#x2F;#vcomments" class="comment-button">评论</a>
+    <hr>
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>自ChatGPT爆火🔥之后，类ChatGPT不断涌现。整理一些关于LLMs/MLLMs的开源项目</p>
+</blockquote>
+<span id="continue-reading"></span>
+<p><a href="https://github.com/King-Key/Open-LLMs-lists/tree/main"><img src="https://img.shields.io/badge/Open--LLMs--lists-github-brightgreen" alt="" /></a></p>
+<hr />
+<h4 id="tong-yong-da-mo-xing">通用大模型</h4>
+<table><thead><tr><th style="text-align: center">model</th><th>Model link</th><th style="text-align: center">stars</th><th>作者</th></tr></thead><tbody>
+<tr><td style="text-align: center">MOSS</td><td>https://github.com/OpenLMLab/MOSS</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/OpenLMLab/MOSS" alt="GitHub Repo stars" /></td><td>复旦NLP实验室在读博士 孙天祥</td></tr>
+<tr><td style="text-align: center">baize</td><td>https://github.com/project-baize/baize-chatbot</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/project-baize/baize-chatbot" alt="" /></td><td>加州大学圣地亚哥分校在读博士 Canwen Xu</td></tr>
+<tr><td style="text-align: center">GLM-130B</td><td>https://github.com/THUDM/GLM-130B</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/THUDM/GLM-130B" alt="" /></td><td>清华大学在读博士 Aohan Zeng</td></tr>
+<tr><td style="text-align: center">ChatGLM</td><td>https://github.com/THUDM/ChatGLM-6B <br>https://github.com/THUDM/ChatGLM2-6B<br>https://github.com/THUDM/ChatGLM3</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/THUDM/ChatGLM-6B" alt="" /><br><img src="https://img.shields.io/github/stars/THUDM/ChatGLM2-6B" alt="" /><br><img src="https://img.shields.io/github/stars/THUDM/ChatGLM3" alt="" /><br></td><td>智谱华章</td></tr>
+<tr><td style="text-align: center">LaMini-LM</td><td>https://github.com/mbzuai-nlp/LaMini-LM</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/mbzuai-nlp/LaMini-LM" alt="" /></td><td>莫纳什大学在读博士 吴明昊</td></tr>
+<tr><td style="text-align: center">WizardLM</td><td>https://github.com/nlpxucan/WizardLM</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/nlpxucan/WizardLM" alt="" /></td><td>微软STCA（亚洲软件技术中心）NLP集团高级研究科学家 Can Xu</td></tr>
+<tr><td style="text-align: center">PandaLLM</td><td>https://github.com/dandelionsllm/pandallm</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/dandelionsllm/pandallm" alt="" /></td><td>南洋理工大学在读博士 焦方锴</td></tr>
+<tr><td style="text-align: center">PandaLM</td><td>https://github.com/WeOpenML/PandaLM</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/WeOpenML/PandaLM" alt="" /></td><td>北大在读博士 王一栋</td></tr>
+<tr><td style="text-align: center">MLC-LLM</td><td>https://github.com/mlc-ai/mlc-llm</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/mlc-ai/mlc-llm" alt="" /></td><td>CMU助理教授 陈天奇团队</td></tr>
+<tr><td style="text-align: center">ColossalChat</td><td>https://github.com/hpcaitech/ColossalAI<br />/tree/main/applications/Chat</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/hpcaitech/ColossalAI" alt="" /></td><td>潞晨科技</td></tr>
+<tr><td style="text-align: center">Dromedary</td><td>https://github.com/IBM/Dromedary</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/IBM/Dromedary" alt="" /></td><td>CMU在读博士 Zhiqing Sun</td></tr>
+<tr><td style="text-align: center">ChatPLUG</td><td>https://github.com/X-PLUG/ChatPLUG</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/X-PLUG/ChatPLUG" alt="" /></td><td>达摩院</td></tr>
+<tr><td style="text-align: center">mPLUG-Owl</td><td>https://github.com/X-PLUG/mPLUG-Owl</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/X-PLUG/mPLUG-Owl" alt="" /></td><td>达摩院</td></tr>
+<tr><td style="text-align: center">alpaca</td><td>https://github.com/tatsu-lab/stanford_alpaca</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/tatsu-lab/stanford_alpaca" alt="" /></td><td>斯坦福大学在读博士 Xuechen Li</td></tr>
+<tr><td style="text-align: center">FastChat</td><td>https://github.com/lm-sys/FastChat</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/lm-sys/FastChat" alt="" /></td><td>加州大学伯克利分校在读博士 Lianmin Zheng</td></tr>
+<tr><td style="text-align: center">LMFlow</td><td>https://github.com/OptimalScale/LMFlow</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/OptimalScale/LMFlow" alt="" /></td><td>香港科技大学在读博士 刁诗哲</td></tr>
+<tr><td style="text-align: center">PromptCLUE</td><td>https://github.com/clue-ai/PromptCLUE</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/clue-ai/PromptCLUE" alt="" /></td><td>元语智能</td></tr>
+<tr><td style="text-align: center">Baichuan</td><td>https://github.com/baichuan-inc/baichuan-7B</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/baichuan-inc/baichuan-7B" alt="" /></td><td>百川智能</td></tr>
+<tr><td style="text-align: center">InternLM</td><td>https://github.com/InternLM/InternLM</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/InternLM/InternLM" alt="" /></td><td>上海人工智能实验室</td></tr>
+<tr><td style="text-align: center">bubogpt</td><td>https://github.com/magic-research/bubogpt</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/magic-research/bubogpt" alt="" /></td><td>抖音</td></tr>
+<tr><td style="text-align: center">Qwen</td><td>https://github.com/QwenLM/Qwen</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/QwenLM/Qwen" alt="" /></td><td>阿里云</td></tr>
+</tbody></table>
+<hr />
+<h4 id="zhuan-yong-da-mo-xing">专用大模型</h4>
+<table><thead><tr><th style="text-align: center">model</th><th style="text-align: center">领域</th><th>Model link</th><th style="text-align: center">Stars</th><th>作者</th></tr></thead><tbody>
+<tr><td style="text-align: center">聚宝盆</td><td style="text-align: center"></td><td></td><td style="text-align: center"></td><td></td></tr>
+<tr><td style="text-align: center">ChatLaw系列</td><td style="text-align: center">法律</td><td>https://github.com/PKU-YuanGroup/ChatLaw</td><td style="text-align: center"><img src="https://img.shields.io/github/stars/PKU-YuanGroup/ChatLaw" alt="" /></td><td>北京大学信息工程学院</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center"></td><td></td><td style="text-align: center"></td><td></td></tr>
+</tbody></table>
+<hr />
+<h4 id="duo-mo-tai-da-mo-xing">多模态大模型</h4>
+<table><thead><tr><th>model</th><th>Model link</th><th>作者</th></tr></thead><tbody>
+<tr><td>InstructBLIP</td><td>https://github.com/salesforce/LAVIS/tree/main/projects/instructblip</td><td>香港科技大学在读博士 戴文亮</td></tr>
+<tr><td>LLaVA</td><td>https://github.com/haotian-liu/LLaVA</td><td>威斯康星大学麦迪逊分校 Haotian Liu</td></tr>
+<tr><td>MiniGPT-4</td><td>https://github.com/Vision-CAIR/MiniGPT-4</td><td>阿卜杜拉国王科技大学在读博士 朱德尧</td></tr>
+<tr><td>GPT4Tools</td><td>https://github.com/StevenGrove/GPT4Tools</td><td>腾讯 AILab 研究员 宋林</td></tr>
+<tr><td>VPGTrans</td><td>https://github.com/VPGTrans/VPGTrans</td><td>新加坡国立大学在读博士 张傲</td></tr>
+</tbody></table>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+<!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+
+
+<!-- CSS -->
+
+<!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  
+
+<!-- <div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: 'dbd6035801c97948cb48b385a6a38fe635c72722', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false,
+    proxy: "https://vercel.prohibitorum.top/github_access_token"
+  })
+  gitalk.render('gitalk-container')
+</script> -->
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<div class="post-footer">
+  <div id="vcomments"></div>
+  <script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'GTyEVU5y7iX6Ftyj1izBCIwc-gzGzoHsz',
+        appKey: 'DfMKrfk6nvXXVAI23GDU3dMH',
+        emojiCDN: '//cdn.jsdelivr.net/gh/Moefyit/Valine-emoji@latest',
+        emojiMaps: {
+            "smile": "smile.png", // 自定义表情
+        },
+        after_load: function() {
+            document.getElementById('loading').style.display = 'none'; // 加载完成后隐藏加载指示器
+        }
+    });
+  </script>
+</div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
