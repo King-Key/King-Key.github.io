@@ -1,8 +1,6 @@
 ---
 title: 在zola博客里面增加搜索功能
 date: 2024-09-27  12:53:20 
-taxonomies:
-  tags: ["zola"]
 extra:
  image: /Blog/2024/Q3/2024-09-27/image-20240927133727347.png
 ---

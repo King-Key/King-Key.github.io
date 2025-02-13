@@ -1,8 +1,6 @@
 ---
 title: Quivr + Ollama 本地部署知识库
 date: 2024-08-19  18:44:30 
-taxonomies:
-  tags: ["Ollama","Quivr","玩转llm"]
 extra:
  image: /Blog/2024/Q3/2024-08-19/image-20240818190711290.png
 ---

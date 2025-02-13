@@ -1,8 +1,6 @@
 ---
 title: windows下open webui+ollama+sd webui
 date: 2024-06-14 01:02:27
-taxonomies:
-  tags: ["玩转llm"]
 extra:
  image: /Blog/2024/Q2/2024-05-09/20240509143206.png
 ---
