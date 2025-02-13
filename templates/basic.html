@@ -123,6 +123,7 @@
         {% if config.extra.show.links %}
         <li><a {% if language_site_path is starting_with("/link") %}class="current" {% endif %} href="{{ get_url(path="@/link/_index.md", lang=lang) }}">{{ trans(key="links", lang=lang) }}</a></li>
         {% endif %}
+        <li><a href="/about/timeline">Idea's</a></li>
         <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
 
       </div>

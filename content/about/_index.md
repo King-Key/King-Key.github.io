@@ -29,9 +29,8 @@ paginate_by: 0
   }
 </style>
 
-<img src="https://haowallpaper.com/link/common/file/previewFileImg/15059183055768896" style="width: 100%; height: 300px; object-fit: cover; object-position: ;">
-
 > <div id="typed-text" class="underline"></div> <!-- 添加 class -->
+---
 
 ## Hi there 👋
 
@@ -43,8 +42,8 @@ paginate_by: 0
 - 2024.11 - 现在：🐜[蚂蚁技术研究院](https://antresearch.com) 资深技术运营
 
 ## 联系方式
-📫 Email:[wangguo113@gmail.com](mailto:wangguo113@gmail.com)
-<br>💬 [WeChat](./wechat.jpg):15633578977
+📫 Email: [wangguo113@gmail.com](mailto:wangguo113@gmail.com)
+<br>💬 [WeChat](./wechat.jpg): 15633578977
 
 ## 我有一只猫🐈
 因为是800块钱买的，所以我给它取名：八仔。它是一只折耳猫、英短蓝白，已经陪伴了我四年了！

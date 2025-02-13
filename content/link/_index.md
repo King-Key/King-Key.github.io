@@ -211,6 +211,7 @@ paginate_by: 0
 - [Shuai Yang](https://andysonys.github.io/),Ph.D. student Artificial Intelligence Thrust, Information Hub The Hong Kong Univerisity of Science and Technology (Guangzhou)
 - [Shiyi Cao 「曹诗怡」](https://shiyicao.com/),Ph.D @ [UC Berkeley ](https://eecs.berkeley.edu/)
 - [Chaoyou Fu](https://bradyfu.github.io/),Assistant Professor @ Nanjing University
+- [Ganqu Cui](https://cgq15.github.io/),a researcher in Shanghai AI Laboratory
 
 
 

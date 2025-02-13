@@ -13,7 +13,6 @@ html::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(https://haowallpaper.com/link/common/file/previewFileImg/7d14e2fb7d8873909eb6b952ec80eeff7d14e2fb7d8873909eb6b952ec80eeff);
   background-repeat: no-repeat;
   /* 禁止背景图重复 */
   background-size: cover;
@@ -394,22 +393,10 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid #ADD8E6;
 }
 .post:hover {
   transform: translateY(10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  background-color: white;
-  /* 鼠标悬浮时背景不透明 */
-}
-.post:before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background-color: #AAAAAA;
 }
 .post:after {
   content: "";
@@ -424,64 +411,6 @@ img {
 }
 .post:hover::after {
   transform: scaleX(1);
-}
-
-.post-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 5%;
-  height: 200px;
-  overflow-wrap: break-word;
-}
-
-.post-image {
-  flex: 1 1 30%;
-  max-width: 40%;
-  padding: 2px;
-  /* 为图片容器增加内边距 */
-  border: 1px solid #ddd;
-  /* 添加浅色边框 */
-  border-radius: 8px;
-  /* 为图片容器添加圆角 */
-  background-color: #fff;
-  /* 设置背景色为白色，提升卡片效果 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* 添加阴影 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* 增加动画效果 */
-  overflow: hidden;
-  /* 隐藏溢出内容 */
-  transform-origin: left bottom;
-  /* 设置缩放点为底部 */
-}
-
-.post-image:hover {
-  transform: scale(1.25);
-  /* 鼠标悬停时整体放大 */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  /* 放大时加深阴影 */
-}
-
-.post-image img {
-  width: 100%;
-  height: 100%;
-  /* 让图片填充整个容器 */
-  object-fit: cover;
-  /* 裁剪图片以适配容器比例 */
-  border-radius: 8px;
-  /* 图片圆角与容器一致 */
-  transition: transform 0.3s ease;
-  /* 添加动画 */
-}
-
-.post-content-wrapper {
-  flex: 1 1 70%;
-  max-width: 55%;
-  align-self: flex-start;
-  /* 左对齐 */
-  margin-right: auto;
-  /* 将右边的空白推到最右边 */
 }
 
 .post-title h1, .post-title h2, .post-title h3 {
@@ -508,8 +437,6 @@ img {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  min-height: calc(1.2em * 2);
-  /* 设置最小高度为两行 */
 }
 
 .post-footer {
@@ -550,7 +477,6 @@ img {
 @media screen and (max-width: 480px) {
   .post {
     margin: 5px;
-    padding: 8px;
   }
 
   .post-title h1 {
@@ -1052,6 +978,14 @@ html.theme--light a:active {
 }
 html.theme--light .page-top {
   background-color: #fff;
+  padding-left: 15%;
+  /* 在小屏幕设备上减小左右间距 */
+  padding-right: 5%;
+  /* 确保右侧也有间距 */
+  max-width: 1200px;
+  /* 设置最大宽度，确保在大屏幕上不会过宽 */
+  margin: 0 auto;
+  /* 自动左右边距使其居中对齐 */
 }
 html.theme--light .page-top .nav a {
   color: #5A5A5A;
@@ -1075,6 +1009,22 @@ html.theme--light .page-top .information #language-switch #languages {
 }
 html.theme--light .page-top .information #language-switch #languages a:hover {
   background-color: #f5f5f5;
+}
+@media (max-width: 768px) {
+  html.theme--light .page-top {
+    padding-left: 2%;
+    /* 保持小屏幕上的间距 */
+    margin: 0 auto;
+    /* 保证仍然居中 */
+  }
+}
+@media (max-width: 480px) {
+  html.theme--light .page-top {
+    padding-left: 10px;
+    /* 在极小屏幕下进一步减小间距 */
+    margin: 0 auto;
+    /* 保证仍然居中 */
+  }
 }
 html.theme--light #sidebar {
   background-color: #fff;
@@ -1119,6 +1069,8 @@ html.theme--light .post .post-content {
   /* 段落 p 样式 */
   /* 引用 blockquote 样式 */
   /* 代码块样式 */
+  /* 代码块的基础样式 */
+  /* 改善代码内容的显示 */
   /* 单行代码块 */
   /* 无序列表样式 */
   /* 有序列表样式 */
@@ -1221,30 +1173,29 @@ html.theme--light .post .post-content blockquote p {
 }
 html.theme--light .post .post-content pre {
   margin: 20px 0;
-  /* 增加上下边距 */
   padding: 15px;
-  /* 增加内边距，让代码块更易读 */
   background-color: #f4f4f4;
-  /* 背景颜色 */
   border-radius: 5px;
-  /* 圆角效果 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* 添加阴影 */
   font-size: 1rem;
-  /* 设置字体大小 */
   overflow-x: auto;
-  /* 如果代码过长，则启用水平滚动 */
+  position: relative;
+  /* 确保子元素可以相对于pre定位 */
+  line-height: 1.5;
+  /* 提升可读性 */
 }
 html.theme--light .post .post-content pre code {
-  font-size: inherit;
-  /* 继承父元素字体大小 */
+  display: block;
   white-space: pre-wrap;
   /* 代码换行 */
-  border: 0;
+  word-break: break-all;
+  /* 长单词或URL地址会自动换行 */
+  font-family: "Courier New", Courier, monospace;
+  /* 使用等宽字体 */
+  color: #333;
+  /* 设置代码文本颜色 */
   background: inherit;
   /* 保持背景一致 */
-  color: inherit;
-  /* 保持文字颜色一致 */
   padding: 0;
   /* 去除额外内边距 */
 }
@@ -1336,12 +1287,12 @@ html.theme--light .post .post-footer {
   border-bottom: 1px solid #f2f2f2;
 }
 html.theme--light .post .post-footer .meta {
-  color: #ffffff;
+  color: #8C8C8C;
   font-size: 15px;
   font-weight: bold;
 }
 html.theme--light .post .post-footer .meta a {
-  color: #ffffff;
+  color: #8C8C8C;
 }
 html.theme--light .post .post-footer .meta a:hover {
   color: #4786D6;

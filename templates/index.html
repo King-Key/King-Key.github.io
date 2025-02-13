@@ -13,7 +13,7 @@
               {% if page.extra.summary %}
                 {{ page.extra.summary | safe | striptags }}
               {% else %}
-                {{ page.content | safe | striptags | truncate(length=100) }}
+                {{ page.content | safe | striptags | truncate(length=150) }}
               {% endif %}
             </p>
           </div>
