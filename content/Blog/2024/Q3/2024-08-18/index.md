@@ -2,9 +2,7 @@
 title: 调用本地ollama api服务
 date: 2024-08-18  01:36:26 
 taxonomies:
-  tags:
-    - ollama
-    - 玩转llm
+  tags: ["ollama", "玩转llm"]
 extra:
  image: /Blog/2024/Q3/2024-08-18/image-20240818115947761.png
 ---
