@@ -1,8 +1,6 @@
 ---
 title: 调用本地ollama api服务
 date: 2024-08-18  01:36:26
-extra:
- image: /Blog/2024/Q3/2024-08-18/image-20240818115947761.png
 ---
 
 > 用程序调用api搭建自己的ollama
