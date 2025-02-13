@@ -1,8 +1,6 @@
 ---
 title: ollama+one api+fastgpt+微信，实现微信机器人
 date: 2024-06-04 09:26:30
-extra:
- image: /Blog/2024/Q2/2024-06-04/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240604120515.png
 ---
 
 > 之前使用的**微秘书**对微信接口收费了，没法免费接入大模型。只能换成chatgpt-on-wechat接入了

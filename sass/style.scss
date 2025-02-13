@@ -354,22 +354,10 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid #ADD8E6;
 
   &:hover {
     transform: translateY(10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 1); /* 鼠标悬浮时背景不透明 */
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background-color: #AAAAAA;
   }
 
   &:after {
@@ -389,47 +377,6 @@ img {
   }
 }
 
-.post-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 5%;
-  height: 200px;
-  overflow-wrap: break-word;
-}
-
-.post-image {
-  flex: 1 1 30%;
-  max-width: 40%;
-  padding: 2px; /* 为图片容器增加内边距 */
-  border: 1px solid #ddd; /* 添加浅色边框 */
-  border-radius: 8px; /* 为图片容器添加圆角 */
-  background-color: #fff; /* 设置背景色为白色，提升卡片效果 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 增加动画效果 */
-  overflow: hidden; /* 隐藏溢出内容 */
-  transform-origin: left bottom ; /* 设置缩放点为底部 */
-}
-
-.post-image:hover {
-  transform: scale(1.25); /* 鼠标悬停时整体放大 */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* 放大时加深阴影 */
-}
-
-.post-image img {
-  width: 100%;
-  height: 100%; /* 让图片填充整个容器 */
-  object-fit: cover; /* 裁剪图片以适配容器比例 */
-  border-radius: 8px; /* 图片圆角与容器一致 */
-  transition: transform 0.3s ease; /* 添加动画 */
-}
-
-.post-content-wrapper {
-  flex: 1 1 70%;
-  max-width: 55%;
-  align-self: flex-start; /* 左对齐 */
-  margin-right: auto; /* 将右边的空白推到最右边 */
-}
 
 .post-title h1, .post-title h2, .post-title h3 {
   font-weight: 600;
@@ -455,7 +402,6 @@ img {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  min-height: calc(1.2em * 2); /* 设置最小高度为两行 */
 }
 
 .post-footer {
@@ -1251,12 +1197,12 @@ html.theme--light {
       border-bottom: 1px solid #f2f2f2;
 
       .meta {
-        color: #ffffff;
+        color: #8C8C8C;
         font-size: 15px;
         font-weight: bold;
 
         a {
-          color: #ffffff;
+          color: #8C8C8C;
 
           &:hover {
             color: #4786D6;

@@ -1,8 +1,6 @@
 ---
 title: obsidian中使用ollama部署llama3,实现本地对话
 date: 2024-05-09 09:26:30
-extra:
- image: /Blog/2024/Q2/2024-05-09/Pasted%20image%2020240509151244.png
 ---
 
 ## 1、[ollama](https://github.com/ollama/ollama)安装使用

@@ -4,25 +4,16 @@
   {% for page in paginator.pages %}
     <section class="post animated fadeInDown">
       <div class="post-wrapper">
-        <!-- 左侧图片区域 -->
-        <div class="post-image">
-          {% if page.extra.image %}
-            <img src="{{ page.extra.image | safe }}" alt="{{ page.title }}">
-          {% else %}
-            <img src="https://haowallpaper.com/link/common/file/previewFileImg/15059183055768896" alt="Default Image">
-          {% endif %}
-        </div>
-        <!-- 右侧内容区域 -->
         <div class="post-content-wrapper">
           <div class="post-title">
-            <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+            <h3><a href="{{ page.permalink }}"># {{ page.title }}</a></h3>
           </div>
           <div class="post-content">
             <p>
               {% if page.extra.summary %}
                 {{ page.extra.summary | safe | striptags }}
               {% else %}
-                {{ page.content | safe | striptags | truncate(length=50) }}
+                {{ page.content | safe | striptags | truncate(length=100) }}
               {% endif %}
             </p>
           </div>
@@ -38,7 +29,6 @@
                     <a class="tag" href="{{ get_taxonomy_url(kind="tags", name=tag, lang=page.lang) | safe }}">{{ tag }}&nbsp;&nbsp;</a>
                   {% endfor %}
                 {% endif %}
-                <i class="fa-regular fa-comment"></i><a href="{{ page.permalink }}#vcomments" class="comment-button"> 评论</a>
               </div>
             </div>
           </div>
