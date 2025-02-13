@@ -1,9 +1,7 @@
 # config.toml 示例
 title = "Wang Guo"
 base_url = "https://king-key.github.io"
-taxonomies = [
-  { name = "tags" },
-]
+
 compile_sass = true
 ignored_content = ["README.md"]
 build_search_index = true
@@ -15,6 +13,9 @@ highlight_theme = "base16-ocean-light"
 
 [extra]
 katex_enable = true
+
+[taxonomies]
+tag = "tags"
 
 [extra.social]
 github = "King-Key"
