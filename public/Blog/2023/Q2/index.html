@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><i class="fab fa-twitter"></i></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><i class="fa-solid fa-c"></i></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><i class="fa-solid fa-image"></i></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;chatglm2-6b-int4ben-di-bu-shu&#x2F;"># 🖋 ChatGLM2-6B-Int4本地部署</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+ChatGLM2-6B 是开源中英双语对话模型 ChatGLM-6B 的第二代版本
+GitHub地址：https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;ChatGLM2-6B
+
+1、先看效果
+
+2、…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-06-29 11:51:27&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;googlecolab-aidemo&#x2F;"># 白嫖Tesla T4 GPU玩转 AI Demo</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+随着大模型时代的到来，算力的需求越来越大！
+
+AI Demo in Google Colab
+FileDemogoogle colabcode
+Stable_Diffusion_Webui_cola…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-06-29 11:51:27&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;zi-ding-yi-shou-ye-qia-pian-gao-du&#x2F;"># 🦋 hexo butterfly自定义首页卡片高度</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                修改代码
+打开themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_page&#x2F;homepage.styl文件
+修改
+  &amp;amp; &amp;gt; .recent-post-item
+    @exte…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-06-13 13:25:49&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;promptzhi-ling&#x2F;"># chatgpt prompt学习</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+怎么可以用好ChatGPT，prompt是关键！
+
+1、prompt的基本原则
+
+开头提供明确说明，有助于为模型设置上下文
+指定预期答案的格式类型
+可以加入系统消息或角色扮演技术增强交互
+
+2、基础…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-06-01 17:06:14&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;ru-he-she-ji-prompt&#x2F;"># 如何设计prompt</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+prompt资源
+
+1、Lexica
+
+2、promptoMANIA: AI art community with prompt generator
+
+3、Arthub.ai: Discover, …
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-26 15:18:40&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;butterlfyzhong-ji-ge-hao-yong-de-wai-gua-biao-qian&#x2F;"># hexo butterlfy主题中几个好用的外挂标签</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+记录保存，方便自己用
+
+1、tab
+{% tabs 代码 %}
+sss
+
+{% tabs tab,2 %}
+&amp;lt;!-- tab 展示1 --&amp;gt;
+this is tab1
+&amp;lt;!-- e…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-11 14:20:44&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;hexo-butterflyzhong-tian-jia-github-calendargong-xian-tu&#x2F;"># hexo butterfly主题中添加github calendar贡献图</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+个性化博客
+
+1、先来看一下效果
+Wang Guo&#x27;s Blog
+
+2、安装
+
+建议直接安装插件，省事也方便
+
+npm i hexo-githubcalendar --save
+
+
+在博客项目根目录…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-09 21:56:04&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;zheng-li-yi-xie-kai-yuan-de-llms&#x2F;"># 🔥 开源 LLMs&#x2F;MLLMs</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+自ChatGPT爆火🔥之后，类ChatGPT不断涌现。整理一些关于LLMs&#x2F;MLLMs的开源项目
+
+
+
+
+通用大模型
+modelModel linkstars作者
+MOSShttps:&#x2F;&#x2F;githu…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-06 16:06:03&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;stable-diffusion-webui-googlecolab&#x2F;"># 白嫖Tesla T4 GPU玩转Stable Diffusion Webui</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+想要玩stable diffusion，算力不可少，白嫖google colab Tesla T4 GPU 玩转Stable Diffusion Webui
+
+1、google colab上安装st…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-05 17:42:55&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;streamlit-cloudbu-shu-yi-ge-streamlit-app&#x2F;"># Streamlit Cloud部署一个Streamlit App</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+白嫖一个Cloud部署自己的算法程序
+
+1、github上创建部署的项目
+项目包括streamlit执行文件和requirements.txt文件。requirements.txt文件的创建可以参考…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-04 13:40:22&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  
+  <div class="pagination">
+    <ul class="clearfix">
+      
+        <li class="next pagbuttons">
+          <a class="btn" role="navigation" href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;page&#x2F;2&#x2F;" aria-label="Next Page">
+            Next Page
+          </a>
+        </li>
+      
+      
+    </ul>
+  </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

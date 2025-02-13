@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo • windows下open webui+ollama+sd webui</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><i class="fab fa-twitter"></i></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><i class="fa-solid fa-c"></i></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><i class="fa-solid fa-image"></i></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+<script src="https://king-key.github.io/js/jquery-1.7.2.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q2&#x2F;2024-06-14&#x2F;">windows下open webui+ollama+sd webui</a></h1>
+  <div class="info">
+    
+    
+    
+      <i class="far fa-sun"></i>
+      <i>Push time: 2024-06-14 01:02:27&nbsp;&nbsp;</i>
+    
+    
+    <i class="fa-regular fa-comment"></i>
+    <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q2&#x2F;2024-06-14&#x2F;#vcomments" class="comment-button">评论</a>
+    <hr>
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>说明：安装使用环境是在Windows下</p>
+</blockquote>
+<h2 id="1-gei-ollamayi-ge-hao-kan-de-jiao-hu-jie-mian-open-webui">1、给ollama一个好看的交互界面（open webui）</h2>
+<h3 id="1-1-ollamaan-zhuang">1.1、ollama安装</h3>
+<blockquote>
+</blockquote>
+<ul>
+<li>安装：在<a href="https://ollama.com/download">ollama</a>官网下载windows版本进行安装</li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-05-09/20240509143206.png" alt="" /></p>
+<ul>
+<li>模型列表：支持的模型列表可以在<a href="https://ollama.com/library">ollama模型仓库</a>查看</li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/image-20240604111352635.png" alt="image-20240604111352635" /></p>
+<ul>
+<li>模型下载：使用<code>ollama pull 模型名称</code>下载模型</li>
+</ul>
+<p>如：<code>ollama pull llama3</code></p>
+<ul>
+<li>
+<p>模型使用</p>
+<ul>
+<li>
+<p>终端使用：使用<code>ollama run 模型名称</code>即可使用</p>
+<p>如：<code>ollama run llama3</code></p>
+</li>
+<li>
+<p>api使用：使用<code>ollama serve</code>、或者直接点击ollama图标即可</p>
+</li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614092046.png" alt="微信截图_20240614092046" /></p>
+</li>
+<li>
+<p>api服务验证：浏览器端输入<code>127.0.0.1:11434</code>，显示<code>ollama id running</code>即为正常</p>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614092419-8328282.png" alt="微信截图_20240614092419" /></p>
+</li>
+</ul>
+<h3 id="1-2-open-webuian-zhuang">1.2、open webui安装</h3>
+<blockquote>
+<p><a href="https://github.com/open-webui/open-webui">Open WebUI</a>是一个可扩展、功能强大且用户友好的自主WebUI，旨在完全离线操作。它支持多种LLM运行器，包括Ollama和OpenAI，兼容API。</p>
+</blockquote>
+<ul>
+<li>基于docker安装open webui</li>
+</ul>
+<pre style="background-color:#eff1f5;color:#4f5b66;"><code><span>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+</span></code></pre>
+<ul>
+<li>本地打开：<code>localhost:3000</code></li>
+</ul>
+<p>首次打开需要注册，第一位注册的用户默认为管理员（注册的信息随便填写，只要邮箱符合@规则即可）</p>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614093537.png" alt="微信截图_20240614093537" /></p>
+<p>此时我们点击“选择一个模型”的时候是没有模型列表的，这个时候就需要配置ollama了</p>
+<h3 id="1-3-open-webuiyin-ru-ollama">1.3、open webui引入ollama</h3>
+<ul>
+<li>首先，我们需要让ollama可以通过本地ip访问，windows下需要新建<code>环境变量</code>。</li>
+</ul>
+<blockquote>
+<p>步骤：windows下直接搜索<strong>编辑系统环境变量</strong>-<strong>环境变量</strong>-在系统变量中<strong>新建</strong>-<strong>变量名：OLLAMA_HOST；变量值：0.0.0.0</strong></p>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614094410.png" alt="微信截图_20240614094410" /></p>
+</blockquote>
+<ul>
+<li>验证ollama：此时在浏览器输入本地ip+端口号就显示可以正常使用了。比如我的地址为：<code>192.168.1.9:11434</code></li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614094649.png" alt="微信截图_20240614094649" /></p>
+<ul>
+<li>在open webui中配置ollama服务，并进行验证</li>
+</ul>
+<blockquote>
+<p>步骤：点击右上角的图标-<strong>设置</strong>-<strong>管理员设置</strong>-<strong>外部连接</strong>-在ollama api中填写<strong>本地ip+端口号</strong>，如<code>192.168.1.9:11434</code></p>
+<p>验证：点击后面的刷新按钮，弹出<strong>已验证服务器连接</strong></p>
+</blockquote>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/image-20240614094912573.png" alt="image-20240614094912573" /></p>
+<ul>
+<li>open webui中使用ol lama服务</li>
+</ul>
+<p>此时就可以选择ollama下载的模型进行对话使用了</p>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614095308.png" alt="微信截图_20240614095308" /></p>
+<h2 id="2-zai-open-webuizhong-lian-jie-sd-yin-ru-tu-xiang-sheng-cheng-de-gong-neng">2、在open webui中连接sd，引入图像生成的功能</h2>
+<h3 id="2-1-sd-webuian-zhuang">2.1、sd webui安装</h3>
+<ul>
+<li>前提：需要安装git/python</li>
+</ul>
+<pre style="background-color:#eff1f5;color:#4f5b66;"><code><span>git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+</span><span>./webui.bat
+</span></code></pre>
+<ul>
+<li>打开<code>本地IP+端口号7860</code></li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240614174529.png" alt="微信截图_20240614174529" /></p>
+<ul>
+<li>在<code>web.bat</code>中添加启动参数（13行左右），以便sd提供api服务</li>
+</ul>
+<pre style="background-color:#eff1f5;color:#4f5b66;"><code><span>set COMMANDLINE_ARGS=--xformers --api --listen --share
+</span></code></pre>
+<h3 id="2-2-open-webuiyin-ru-sd">2.2、open webui引入sd</h3>
+<p>在<strong>管理员面板</strong>- <strong>设置</strong>-<strong>图像</strong>里面按照下图进行配置，所有的参数都可以根据自己的进行修改</p>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/image-20240614175027956.png" alt="image-20240614175027956" /></p>
+<h2 id="3-shi-yong">3、使用</h2>
+<ul>
+<li>正常对话，进行描述</li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/image-20240614175258538.png" alt="image-20240614175258538" /></p>
+<ul>
+<li>点击<strong>图像生成</strong>按钮，便可以生成图像</li>
+</ul>
+<p><img src="https://king-key.github.io/Blog/2024/Q2/2024-06-14/image-20240614175340881.png" alt="image-20240614175340881" /></p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

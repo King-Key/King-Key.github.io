@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo • 关于大模型的使用成本计算</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><i class="fab fa-twitter"></i></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><i class="fa-solid fa-c"></i></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><i class="fa-solid fa-image"></i></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+<script src="https://king-key.github.io/js/jquery-1.7.2.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q3&#x2F;2024-08-08&#x2F;">关于大模型的使用成本计算</a></h1>
+  <div class="info">
+    
+    
+    
+      <i class="far fa-sun"></i>
+      <i>Push time: 2024-08-08 09:00:00&nbsp;&nbsp;</i>
+    
+    
+    <i class="fa-regular fa-comment"></i>
+    <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q3&#x2F;2024-08-08&#x2F;#vcomments" class="comment-button">评论</a>
+    <hr>
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>虽然日常用不了，但是可以简单了解下</p>
+</blockquote>
+<h3 id="yu-xun-lian-cheng-ben">预训练成本</h3>
+<p>$预训练成本 = ( 模型参数量 ✖️ 6 /A100 卡每秒的计算次数) ✖️ 显卡的租用成本 ✖️ 训练数据的 token 量$</p>
+<ul>
+<li>
+<p>常量</p>
+<ul>
+<li>
+<p>A100 卡每秒的计算次数 = 312 TFLOPS/Watt (官方公布，每秒可以进行 312T 次浮点数计算)</p>
+</li>
+<li>
+<p>显卡租用成本：暂时以微软 Azure 云上公布的 Nvdia A100 的三年期租用价格$2.2659/小时计算，本文按秒来计算，就是每秒租用价格为$(2.2659/3600) (参考 https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux/#pricing)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>eg：</p>
+<ul>
+<li>GPT3 的参数量是 175B，训练数据的 token 量 500B，约 105 万美元*5 折，约 372.75 万元。</li>
+<li>GPT4 的参数量是 1800B，训练数据的 token 量 13T， 费用是 GPT3 的 280 倍，约 1.45 亿美元，人民币 10 亿元。</li>
+<li>GPT4 Turbo 的参数量是 8*222B ，训练数据的 token 量 13T，费用与 GPT4 差不多。</li>
+</ul>
+<h3 id="tui-li-cheng-ben">推理成本</h3>
+<p>$$
+\text{推理成本（每千个token）} = \frac{\text{模型参数量} \times 2 \times \text{每次推理所需token数}}{\text{GPU每秒计算次数} \times \text{显卡租用成本}}
+$$</p>
+<p>$$
+\text{单位token推理成本} = \frac{\text{推理成本（每千个token）}}{\text{batch size}}
+$$</p>
+<p>$$
+\text{并行化推理成本} = \frac{\text{单卡推理成本}}{\text{并行卡数}}
+$$</p>
+<p>$$
+\text{优化后推理成本} = \text{并行化推理成本} \times (1 - \text{优化效率})
+$$</p>
+<p>其中：</p>
+<ul>
+<li>模型参数量是指模型中的可训练参数总数。</li>
+<li>每次推理所需token数是指每次推理过程中模型需要处理的token数量。</li>
+<li>GPU每秒计算次数是指GPU在一秒内能够完成的浮点运算次数。</li>
+<li>显卡租用成本是指租用GPU进行计算的成本。</li>
+<li>batch size是指每次推理可以同时处理的样本数量。</li>
+<li>并行卡数是指用于并行化推理的GPU数量。</li>
+<li>优化效率是指通过模型压缩、硬件加速等方法提高效率的比例。</li>
+</ul>
+<p>请注意，这个公式是一个简化的示例，实际的推理成本计算可能需要考虑更多的因素，如模型的具体架构、硬件的具体性能、电力成本、运维成本等。</p>
+<p>eg：GPT4 Turbo</p>
+<p>根据之前提供的搜索结果，我们可以构建一个简化的计算公式来估算GPT4 Turbo模型的推理成本。请注意，实际成本可能会因各种因素（如电力消耗、冷却系统、人工维护等）而有所不同，但以下公式提供了一个基本的估算方法。</p>
+<p>首先，我们需要以下参数：</p>
+<ul>
+<li>模型参数量（( P )）：GPT4 Turbo的参数量为8,222亿（即 $8.222 * 10^{11}$ ）。</li>
+<li>每次推理所需token数（T ）：假设为1,000（即1千个token）。</li>
+<li>GPU每秒计算次数（ C ）：假设使用NVIDIA A100 GPU，其计算次数可以是一个估算值，例如每秒可以处理的浮点运算次数。</li>
+<li>显卡租用成本（ R ）：假设租用成本为每小时一定金额，例如每小时3.93美元。</li>
+</ul>
+<p>根据搜索结果中的一个示例，我们可以构建如下公式：
+$ \text{每千个token推理成本} = \frac{P \times T}{C \times R} $</p>
+<p>将示例中的值代入公式：</p>
+<ul>
+<li>$  P = 8.222 \times 10^{11} （模型参数量）$</li>
+<li>$ T = 1,000 （每次推理所需token数）$</li>
+<li>$C$ 假设为 $10^{14} $（A100 GPU每秒的计算次数，这是一个示例值，实际值可能不同）</li>
+<li>( R = 3.93 )（每小时的租用成本，以美元计）</li>
+</ul>
+<p>计算公式变为：
+$ \text{每千个token推理成本} = \frac{8.222 \times 10^{11} \times 1,000}{10^{14} \times 3.93} $</p>
+<p>进行计算：
+$\text{每千个token推理成本} = \frac{8.222 \times 10^{14}}{3.93 \times 10^{14}}$
+$\text{每千个token推理成本} \approx 2.09 \text{美元} $</p>
+<p>这个计算结果是一个简化的估算，实际成本可能会更高，因为还需要考虑其他因素，如电力成本、冷却系统成本、运维成本以及可能的优化方法等。此外，实际的GPU计算次数和租用成本可能会根据具体使用情况和供应商而有所不同。</p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

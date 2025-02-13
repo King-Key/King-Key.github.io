@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><i class="fab fa-twitter"></i></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><i class="fa-solid fa-c"></i></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><i class="fa-solid fa-image"></i></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;stable-diffusion-webui-googlecolab&#x2F;"># 白嫖Tesla T4 GPU玩转Stable Diffusion Webui</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+想要玩stable diffusion，算力不可少，白嫖google colab Tesla T4 GPU 玩转Stable Diffusion Webui
+
+1、google colab上安装st…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-05 17:42:55&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;streamlit-cloudbu-shu-yi-ge-streamlit-app&#x2F;"># Streamlit Cloud部署一个Streamlit App</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+白嫖一个Cloud部署自己的算法程序
+
+1、github上创建部署的项目
+项目包括streamlit执行文件和requirements.txt文件。requirements.txt文件的创建可以参考…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-04 13:40:22&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;pythonzhong-yi-xie-hao-yong-de-kuo-zhan-bao&#x2F;"># Python中一些好用的扩展包</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+正所谓“工欲善其事，必先利其器”。推荐几个常用的、且非常方便的Python扩展库
+
+1、pqi
+
+pqi解决pip安装速度较慢的问题
+
+pip安装默认的软件源是国外的，下载起来速度很慢，而将软件源换…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-04-04 12:22:01&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;googlecolab-stablediffusion&#x2F;"># 4个开源Stable Diffusion项目</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                1、Stable Diffusion
+{% link stable-diffusion,CompVis,https:&#x2F;&#x2F;github.com&#x2F;CompVis&#x2F;stable-diffusion %}
+
+…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-03-28 14:26:21&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;linuxzhong-yi-xie-hao-yong-de-ming-ling&#x2F;"># linux中一些好用的命令</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                1、创建软连接ln
+ln -s 源文件 目标文件
+
+2、同步文件夹rsync
+rsync -avz 源目录 目标目录
+
+
+a 表示以递归模式进行传输
+v 表示显示详细信息
+z 表示在传输时进行压缩
+
+…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-03-14 19:03:32&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;hexoxiu-gai-yin-yong-lian-jie-de-yang-shi&#x2F;"># hexo修改引用链接的样式</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+修改超链接的引用样式，先看一下效果
+
+{% link Hexo的Butterfly魔改：网址卡片外挂标签,张洪Heo,https:&#x2F;&#x2F;blog.zhheo.com&#x2F;p&#x2F;ccaf9148.html %…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-03-09 12:11:51&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;cmakebian-yi-build&#x2F;"># cmake编译build</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+基于cmake编译C++程序
+
+1、环境需求
+ubuntu
+g++
+cmake
+
+安装方式：
+sudo apt install g++&#x2F;cmake
+2、helloSLAM
+helloSLAM.cpp…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-03-06 16:18:14&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;hao-wan-de-aikai-yuan-xiang-mu&#x2F;"># 好玩的AI开源项目</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                stable-diffusion
+
+Stable Diffusion is a latent text-to-image diffusion model
+
+
+开源地址：https:&#x2F;&#x2F;github.c…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-03-04 21:55:47&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;hexo-galleryxiang-ce-zhong-pi-liang-tian-jia-zhao-pian&#x2F;"># hexo gallery相册中批量添加照片</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+hexo 可以使用gallery外挂创建相册，但手动添加太过麻烦，因此用shell脚本自动处理
+
+1、实现代码
+#!&#x2F;bin&#x2F;sh 
+#============ get the file name …
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-02-20 00:37:10&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <div class="post-content-wrapper">
+          <div class="post-title">
+            <h3><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;vscodezhong-chuang-jian-markdownmo-ban&#x2F;"># VScode中创建markdown模板</a></h3>
+          </div>
+          <div class="post-content">
+            <p>
+              
+                
+利用代码片段快速生成特定信息
+
+1、vscode中新建“用户代码片段”
+
+打开“code“ - “首选项” - “配置用户代码片段”
+
+
+
+“新建全局代码片段文件”，文件名可随意
+
+
+2、创建自定义…
+              
+            </p>
+          </div>
+          <div class="post-footer">
+            <div class="meta">
+              <div class="info">
+                
+                  <i class="far fa-sun"></i><i> Push time: 2023-02-16 16:24:18&nbsp;&nbsp;</i>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  
+  <div class="pagination">
+    <ul class="clearfix">
+      
+        <li class="next pagbuttons">
+          <a class="btn" role="navigation" href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;page&#x2F;4&#x2F;" aria-label="Next Page">
+            Next Page
+          </a>
+        </li>
+      
+      
+        <li class="pre pagbuttons">
+          <a class="btn" role="navigation" href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;page&#x2F;2&#x2F;" aria-label="Last Page">
+            Last Page
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
