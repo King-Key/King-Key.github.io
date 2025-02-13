@@ -14,8 +14,13 @@ highlight_theme = "base16-ocean-light"
 [extra]
 katex_enable = true
 
-[taxonomies]
-tag = "tags"
+[[taxonomies]]
+name = "tags"
+slug = "tags"
+
+[[taxonomies]]
+name = "categories"
+slug = "categories"
 
 [extra.social]
 github = "King-Key"
