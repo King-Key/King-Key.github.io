@@ -1,0 +1,1700 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  position: relative; /* 为伪元素提供定位基础 */
+}
+
+html::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://haowallpaper.com/link/common/file/previewFileImg/7d14e2fb7d8873909eb6b952ec80eeff7d14e2fb7d8873909eb6b952ec80eeff);
+  background-repeat: no-repeat; /* 禁止背景图重复 */
+  background-size: cover; /* 背景图覆盖整个页面 */
+  background-position: center center; /* 背景图居中显示 */
+  background-attachment: fixed; /* 背景图固定，滚动时不动 */
+  opacity: 0.5; /* 设置背景图透明度 */
+  z-index: -1; /* 确保背景图在其他内容之后 */
+}
+
+body {
+  font-family: 'PingHei', 'PingFang SC', Helvetica Neue, 'Work Sans', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+  font-size: 16px;
+  width: 90%; /* 使主体宽度适当收缩，以便左右有边距 */
+  margin: 0 auto 10px auto; /* 保持上下间距，左右自动居中 */
+  line-height: 1.5em;
+  
+}
+
+p {
+  line-height: 1.9em;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s linear;
+}
+
+a:hover,
+a:focus {
+  opacity: 0.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*basic styles ends*/
+
+
+/*animation starts*/
+.animated {
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+.animated.hinge {
+  animation-duration: 1s;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0.5;
+    transform: translateY(-20px);
+    background-color: rgba(255, 255, 255, 0.2); /* 透明背景色 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: rgba(255, 255, 255, 0); /* 保持透明背景 */
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+  background-color: rgba(255, 255, 255, 0); /* 保持透明背景 */
+}
+
+/*animation ends*/
+
+.content {
+  height: auto;
+  float: right;
+  margin-top: 10px;
+  right: 5%;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0); /* 设置背景颜色为白色，透明度为80% */
+}
+
+/* 优化手机端显示 */
+@media screen and (max-width: 768px) {
+  .content {
+    float: none; /* 移动端取消浮动，避免内容超出屏幕 */
+    width: 90%; /* 增加宽度以利用更多屏幕空间 */
+    margin: 20px auto; /* 设置居中显示 */
+    right: 0; /* 重置右边距 */
+  }
+
+  .post {
+    margin: 10px; /* 在小屏幕上减少外边距 */
+    padding: 10px; /* 在小屏幕上减少内边距 */
+  }
+
+  .post-title h1 {
+    font-size: 24px; /* 在移动设备上缩小字体 */
+  }
+
+  .post-content h3 {
+    font-size: 18px;
+  }
+
+  .post-content p{
+    font-size: 12px;
+  }
+
+  .pagination ul {
+    display: block; /* 改为块级布局 */
+    text-align: center; /* 居中显示 */
+  }
+
+  .pagination li {
+    display: inline-block; /* 在较小屏幕上仍然保持水平排列 */
+    margin: 0 3px; /* 缩小间距 */
+  }
+
+  .pagination .pre, .pagination .next {
+    float: none; /* 取消浮动 */
+    display: inline-block; /* 使上一页和下一页按钮水平排列 */
+    margin: 10px 5px; /* 增加上下间距 */
+  }
+}
+
+/* 进一步优化超小屏幕(如手机)的显示 */
+@media screen and (max-width: 480px) {
+  .content {
+    width: 100%; /* 在超小屏幕上宽度设置为100% */
+    margin: 10px auto; /* 进一步减少上方和下方的间距 */
+    padding: 0 10px; /* 增加左右内边距，避免内容紧贴屏幕 */
+  }
+
+  .post {
+    margin: 5px;
+    padding: 8px;
+  }
+
+  .post-title h1 {
+    font-size: 20px; /* 更小的标题字体 */
+  }
+
+  .pagination li {
+    margin: 0 2px; /* 进一步减少分页按钮间的间距 */
+  }
+
+  .pagination a {
+    padding: 6px 10px; /* 减少点击区域 */
+    font-size: 14px; /* 缩小字体 */
+  }
+
+  .pagination .pre, .pagination .next {
+    display: block; /* 在超小屏幕上将按钮堆叠显示 */
+    width: 100%;
+    text-align: center;
+    margin: 5px 0; /* 上下间距 */
+  }
+}
+
+.page-top {
+  position: fixed;
+  right: 0;
+  left: 10%;
+  z-index: 3;
+  height: auto;
+  transition: transform 0.2s, background-color 0.3s, opacity 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.5); /* 可以设置透明背景颜色 */
+    opacity: 1;
+  }
+
+  .nav {
+    list-style: none;
+    padding: 18px 8px;
+    display: flex;
+    flex-direction: column; /* 设置元素垂直排列 */
+    font-size: 16px;
+    font-weight: bold;
+    gap: 10px;
+    background-color: transparent; /* 设置背景为透明 */
+    
+    /* 在此也可以为文本设置颜色，使其更清晰可见 */
+    color: #000;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 12px;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+      padding-right: 0;
+
+      @media screen and (max-width: 400px) {
+        padding-right: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+      transition: color 0.3s, transform 0.3s;
+
+      &:hover {
+        color: #007BFF;
+        background-color: rgba(255, 255, 255, 0.1); /* 悬停时添加透明背景 */
+        transform: scale(1.5);
+      }
+
+      &.current {
+        border-bottom: 2px solid #007BFF;
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 12px;
+    padding-right: 4px;
+
+    @media screen and (max-width: 768px) {
+      padding-right: 10px;
+    }
+
+    .avatar {
+      display: none;
+
+      @media screen and (min-width: 520px) {
+        display: block;
+      }
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+    }
+
+    .back_btn {
+      padding-top: 7px;
+      cursor: pointer;
+
+      a {
+        display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+
+        @media screen and (max-width: 768px) {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+/* 调整页面整体布局 */
+@media screen and (max-width: 768px) {
+  .content {
+    width: 100%; /* 在手机端内容宽度为 100% */
+    margin-top: 60px;
+    margin-right: 0; /* 去掉右边距 */
+  }
+}
+
+
+/* 侧边栏样式 */
+#sidebar {
+  width: 20%;
+  background-size: cover;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 4;
+  
+
+  .logo-title {
+    text-align: center;
+    padding-top: 20px;
+
+    .description {
+      font-size: 14px;
+    }
+
+    .logo {
+      margin: 0 auto; /* 居中对齐 */
+      padding: 0; /* 内边距设置为0，以使其不影响尺寸 */
+      background-color: #fff; /* 背景颜色 */
+      border-radius: 50%; /* 圆形边角 */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+      display: flex; /* 使用flex布局 */
+      align-items: center; /* 垂直居中对齐 */
+      justify-content: center; /* 水平居中对齐 */
+      width: 200px; /* 设置固定宽度，与图片相同 */
+      height: 200px; /* 设置固定高度，与图片相同 */
+      transition: transform 0.2s; /* 增加过渡效果 */
+      
+      /* 鼠标悬停效果 */
+      &:hover {
+        transform: scale(1.2); /* 悬停时放大 */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+      }
+    
+      img {
+        border-radius: 50%; /* 圆形边角 */
+        width: 100%; /* 设置为100%以适应父元素 */
+        height: auto; /* 自动调整高度以保持比例 */
+      }
+    }
+  }
+
+  .social-links {
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+
+    li {
+      display: inline;
+      padding: 0 4px; /* 为每个社交图标添加左右内边距 */
+      line-height: 0; /* 行高为0以消除间距 */
+    }
+  }
+}
+
+.post {
+  margin: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0); /* 设置背景颜色为白色，透明度为80% */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid #ADD8E6;
+
+  &:hover {
+    transform: translateY(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1); /* 鼠标悬浮时背景不透明 */
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #AAAAAA;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #453d3d;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.post-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 5%;
+  height: 200px;
+  overflow-wrap: break-word;
+}
+
+.post-image {
+  flex: 1 1 30%;
+  max-width: 40%;
+  padding: 2px; /* 为图片容器增加内边距 */
+  border: 1px solid #ddd; /* 添加浅色边框 */
+  border-radius: 8px; /* 为图片容器添加圆角 */
+  background-color: #fff; /* 设置背景色为白色，提升卡片效果 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 增加动画效果 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  transform-origin: left bottom ; /* 设置缩放点为底部 */
+}
+
+.post-image:hover {
+  transform: scale(1.25); /* 鼠标悬停时整体放大 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* 放大时加深阴影 */
+}
+
+.post-image img {
+  width: 100%;
+  height: 100%; /* 让图片填充整个容器 */
+  object-fit: cover; /* 裁剪图片以适配容器比例 */
+  border-radius: 8px; /* 图片圆角与容器一致 */
+  transition: transform 0.3s ease; /* 添加动画 */
+}
+
+.post-content-wrapper {
+  flex: 1 1 70%;
+  max-width: 55%;
+  align-self: flex-start; /* 左对齐 */
+  margin-right: auto; /* 将右边的空白推到最右边 */
+}
+
+.post-title h1, .post-title h2, .post-title h3 {
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.post-title h1 {
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.post-title h2, .post-title h3 {
+  font-size: 20px;
+}
+
+.post-title a {
+  text-decoration: none;
+}
+
+.post-content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  min-height: calc(1.2em * 2); /* 设置最小高度为两行 */
+}
+
+.post-footer {
+  padding-bottom: 10px;
+}
+
+.post-footer .meta {
+  font-size: 10px;
+}
+
+.post-footer .tags {
+  font-size: 12px;
+}
+
+
+/* 使用媒体查询优化手机端布局 */
+@media screen and (max-width: 768px) {
+  .post {
+    margin: 5px; /* 在小屏幕上减少外边距 */
+    padding: 5px; /* 在小屏幕上减少内边距 */
+  }
+
+  .post-title h1 {
+    font-size: 24px; /* 在移动设备上缩小字体 */
+  }
+
+  .post-content h3 {
+    font-size: 18px;
+  }
+
+  .post-footer .meta {
+    font-size: 10px; /* 更小的字体以适应移动设备 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .post {
+    margin: 5px;
+    padding: 8px;
+  }
+
+  .post-title h1 {
+    font-size: 20px; /* 更小的标题字体 */
+  }
+
+  .post-footer .meta {
+    font-size: 9px;
+  }
+}
+
+.pagination {
+  margin: 30px auto; /* 调整为居中 */
+  padding-bottom: 56px;
+  text-align: center; /* 确保分页元素在较大屏幕上居中显示 */
+
+  ul {
+    list-style: none;
+    padding: 0;
+    height: auto; /* 移动端适应高度 */
+
+    li {
+      margin: 0 5px; /* 增加间距 */
+      display: inline-block; /* 保证分页按钮水平排列 */
+      line-height: 1.5; /* 调整行高以改善视觉 */
+      
+      a {
+        text-decoration: none;
+        padding: 8px 12px; /* 增加点击区域 */
+        border: 1px solid #ddd; /* 增加边框以增强按钮感 */
+        border-radius: 5px; /* 圆角按钮 */
+        transition: background-color 0.3s ease; /* 添加过渡效果 */
+      }
+
+      a:hover {
+        background-color: #f0f0f0; /* 悬停时改变背景颜色 */
+      }
+    }
+  }
+
+  .pre {
+    float: left;
+    margin-right: auto; /* 向左对齐 */
+  }
+
+  .next {
+    float: right;
+    margin-left: auto; /* 向右对齐 */
+  }
+}
+
+/* 优化手机端分页显示 */
+@media screen and (max-width: 768px) {
+  .pagination ul {
+    display: block; /* 改为块级布局 */
+    text-align: center; /* 居中显示 */
+  }
+
+  .pagination li {
+    display: inline-block; /* 在较小屏幕上仍然保持水平排列 */
+    margin: 0 3px; /* 缩小间距 */
+  }
+
+  .pagination .pre, .pagination .next {
+    float: none; /* 取消浮动 */
+    display: inline-block; /* 使上一页和下一页按钮水平排列 */
+    margin: 10px 5px; /* 增加上下间距 */
+  }
+}
+
+/* 进一步优化超小屏幕(如手机)的显示 */
+@media screen and (max-width: 480px) {
+  .pagination li {
+    margin: 0 2px; /* 进一步减少分页按钮间的间距 */
+  }
+
+  .pagination a {
+    padding: 6px 10px; /* 减少点击区域 */
+    font-size: 14px; /* 缩小字体 */
+  }
+
+  .pagination .pre, .pagination .next {
+    display: block; /* 在超小屏幕上将按钮堆叠显示 */
+    width: 100%;
+    text-align: center;
+    margin: 5px 0; /* 上下间距 */
+  }
+}
+
+.like-reblog-buttons {
+  float: right;
+}
+
+.like-button, .reblog-button {
+  float: right;
+  padding-left: 10px;
+}
+
+#install-btn {
+  position: fixed;
+  bottom: 0;
+  right: 6px;
+}
+
+#disqus_thread {
+  margin: 30px;
+}
+
+.footer {
+  clear: both;
+  text-align: center; /* 文本居中 */
+  font-size: 10px; /* 字体大小 */
+  margin: 0 auto; /* 自动外边距以居中 */
+  position: absolute; /* 绝对定位 */
+  bottom: 20px; /* 距离底部20px */
+  left: 50%; /* 从左边开始位置50% */
+  transform: translateX(-50%); /* 向左移动自身宽度的50%以实现居中 */
+  width: 60%; /* 宽度60% */
+  padding: 20px 0; /* 上下内边距 */
+}
+
+
+/* For archive */
+.archive {
+  max-width: 100%; /* 最大宽度 */
+  margin: 0 auto; /* 居中显示 */
+  padding: 20px; /* 增加外边距 */
+}
+
+.list-with-title {
+  padding: 0; /* 去掉内边距 */
+  list-style: none; /* 去掉默认的列表样式 */
+}
+
+/* 隐藏 summary 默认的三角箭头 */
+summary::-webkit-details-marker {
+  display: none;
+}
+details summary { list-style:none;}
+
+.date {
+  font-size: 0.9em; /* 日期字体大小 */
+  color: #888; /* 日期颜色 */
+}
+
+.tag-list-item {
+  margin: 15px;;
+  padding: 15px; /* 增加内边距 */
+  cursor: pointer; /* 鼠标悬停效果 */
+  background-color: #f9f9f9; /* 背景颜色 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  transition: background-color 0.3s, transform 0.3s; /* 过渡效果 */
+}
+
+.tag-list-item:hover {
+  background-color: #e9ecef; /* 悬停时的背景颜色 */
+  transform: scale(1.02); /* 悬停时轻微放大 */
+}
+
+.sub-list {
+  padding: 0; /* 去掉内边距 */
+  margin: 20px; /* 外边距，增加与上方的间距 */
+}
+
+.sub-list li {
+  padding: 10px 15px; /* 增加内边距 */
+  border-bottom: 1px solid #ddd; /* 分隔线 */
+  transition: background-color 0.3s; /* 背景颜色过渡效果 */
+}
+
+.sub-list li:last-child {
+  border-bottom: none; /* 最后一项去掉分隔线 */
+}
+
+.sub-list li:hover {
+    background-color: #f1f1f1;
+}
+
+.listing-item {
+  padding: 8px 0; /* 列表项内边距 */
+  border-bottom: 1px solid #ddd; /* 列表项分隔线 */
+}
+
+.listing-item:last-child {
+  border-bottom: none; /* 最后一项去掉分隔线 */
+}
+
+.listing-title {
+  font-size: 2em; /* 字体大小 */
+  font-weight: bold; /* 粗体字 */
+  color: #333; /* 字体颜色 */
+  padding: 15px; /* 内边距 */
+  margin: 20px 0; /* 外边距 */
+  background-color: #f9f9f9; /* 背景颜色 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  transition: background-color 0.3s, transform 0.3s; /* 过渡效果 */
+}
+
+.listing-title:hover {
+  background-color: #e1e1e1; /* 悬停时背景颜色 */
+  transform: translateY(-2px); /* 悬停时轻微抬升 */
+}
+
+
+/* share */
+.share {
+  margin: 0 30px;
+  display: inline-flex;
+}
+
+.evernote {
+  background-color: #3E3E3E;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #ED6243;
+    }
+  }
+}
+
+.weibo, .twitter {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* 使用50%圆形 */
+  margin-right: 5px;
+
+  a {
+    color: #fff;
+    padding: 9px;
+
+    &:hover {
+      /* 使用不同的hover颜色 */
+    }
+  }
+}
+
+.weibo {
+  background-color: #ED6243;
+
+  a:hover {
+    color: #BD4226;
+  }
+}
+
+.twitter {
+  background-color: #59C0FD;
+
+  a:hover {
+    color: #4B9ECE;
+  }
+}
+
+/* about */
+.about {
+  margin: 30px;
+
+  h3 {
+    font-size: 22px;
+  }
+}
+
+/* comments */
+.read_more {
+  font-size: 14px;
+}
+
+.back-button {
+  padding-top: 30px;
+  max-width: 100px;
+  padding-left: 40px;
+  float: left;
+}
+
+#fb_comments_container {
+  margin: 30px;
+}
+
+a.btn {
+  font-weight: 400;
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  outline: 0;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 999em;
+}
+
+.btn:hover {
+  display: inline-block;
+  position: relative;
+  outline: 0px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 999em;
+}
+
+[role="back"] {
+  padding: 0.5em 1.25em;
+  line-height: 1.666em;
+}
+
+[role="home"] {
+  padding: 0.5em 1.25em;
+  line-height: 1.666em;
+}
+
+[role="navigation"] {
+  padding: 0.5em 1.25em;
+  line-height: 1.666em;
+}
+
+[role="tags"] {
+  padding: 6px 12px;
+}
+
+.menu {
+  float: right;
+  padding-top: 30px;
+
+  .btn-down {
+    margin: 0;
+
+    li {
+      list-style: none;
+      width: 100px;
+
+      a {
+        display: inline-block;
+        position: relative;
+        padding: 0.5em 1.25em;
+        outline: 0;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+        font-weight: 400;
+        border-radius: 999em; /* 圆形边框 */
+
+        margin-top: 5px;
+
+        &:hover {
+          color: #fff;
+          background: #3CBD10;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+  }
+
+  .btn-down div {
+    position: absolute;
+    visibility: hidden;
+    width: 100px;
+    float: right;
+  }
+}
+
+.page_404 {
+  text-align: center;
+  padding-top: 50px;
+}
+
+@media screen and (max-width: 960px) {
+  #sidebar {
+    width: 100%;
+    position: absolute;
+    border-right: none;
+    z-index: 1;
+
+    .logo-title {
+      padding-top: 20px;
+    }
+  }
+
+  .page-top{
+    margin-top: -20px;
+    .nav {
+      flex-direction: row; /* 设置元素垂直排列 */
+      gap: 10px;
+    }
+  }
+
+  .content {
+    margin-top: 420px;
+    width: 100%;
+  }
+
+  .post-content{
+    // display: none;
+    .p{
+      font-size: 6px;
+    }
+  }
+
+  .post-footer{
+    font-size: 3px;
+  }
+
+  .share {
+    display: grid;
+  }
+
+  .social-links {
+    list-style: none;
+    font-size: 14px;
+    text-align: center;
+
+    i {
+      margin-right: 3px;
+    }
+  }
+}
+
+/* color styles */
+/* light mode */
+html.theme--light {
+  background-color: #fff;
+
+  body {
+    color: rgba(0, 0, 0, 0.5);
+    // background-color: #fff;
+    background-color: rgba(255, 255, 255, 0); /* 设置背景颜色为白色，透明度为80% */
+  }
+
+  a:link,
+  a:visited {
+    color: #424242;
+  }
+
+  a:hover,
+  a:active {
+    color: #4786D6;
+  }
+
+  /*basic styles ends*/
+
+  .page-top {
+    background-color: #fff;
+    
+
+    .nav {
+      a {
+        color: #5A5A5A;
+      }
+
+      a:hover {
+        color: #4786D6;
+      }
+
+      a.current {
+        color: #5A5A5A;
+        border-bottom: 1px solid #5A5A5A;
+      }
+    }
+
+    .information #language-switch {
+      button {
+        color: #5f5f5f;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+
+      #languages {
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        background-color: white;
+
+        a:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+
+  }
+
+  #sidebar {
+    background-color: #fff;
+    border-right: 1px solid #f2f2f2;
+
+    .logo-title {
+      .description {
+        color: #565654;
+      }
+
+      .title {
+        a {
+          color: #464646;
+        }
+      }
+
+    }
+
+    .social-links {
+      a {
+        color: #565654;
+      }
+
+      a:hover {
+        color: #4786D6;
+      }
+    }
+  }
+
+  .post {
+    background-color: rgba(255, 255, 255, 0); /* 半透明背景 */
+    flex: 1; /* 每篇文章在一行中占据相等的空间 */
+
+    .post-title {
+      h2 {
+        color: #000000;
+        font-weight: bolder;
+      }
+
+      h3 {
+        color: #464646;
+        text-transform: capitalize;
+      }
+
+    }
+
+    // 正文样式
+    .post-content { 
+      color: #111111;
+      font-size: 16px;
+      line-height: 1.6em; /* 增加整体行间距，提升可读性 */
+    
+      /* 链接样式 */
+      a:link {
+        text-decoration: underline;
+        border-bottom: 0;
+        text-decoration-thickness: 1.2px;
+        text-underline-offset: 2px;
+        transition: all 0.3s ease; /* 增加平滑过渡效果 */
+      }
+    
+      a:visited {
+        color: inherit; /* 保持访问过的链接颜色一致 */
+      }
+    
+      a:hover,
+      a:focus {
+        color: #2F69B3; /* 悬停时的颜色效果 */
+        opacity: 0.8; /* 轻微的透明度变化，增强悬停效果 */
+      }
+    
+      /* 标题 h1 样式 */
+      h1 {
+        color: #000000;
+        font-size: 2rem;
+        margin-top: 20px;
+        padding-left: 20px;
+        position: relative;
+        display: inline-block;
+        font-weight: bold; /* 强调标题 */
+        border-radius: 4px;
+      }
+    
+      h1::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+        width: 5px;
+        background-color: #4a4a4a;
+      }
+    
+      /* 标题 h2 样式 */
+      h2 {
+        color: #000000;
+        font-size: 1.5rem;
+        margin-top: 15px;
+        padding-left: 20px;
+        position: relative;
+        display: inline-block;
+        border-radius: 4px;
+      }
+    
+      h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+        width: 3px;
+        background-color: #4a4a4a;
+      }
+    
+      /* 标题 h3 样式 */
+      h3 {
+        color: #5F5F5F;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+    
+      /* 标题 h4 样式 */
+      h4 {
+        color: #5F5F5F;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+    
+      /* 段落 p 样式 */
+      p {
+        line-height: 1.8em; /* 增加段落行高，提升可读性 */
+        margin-top: 5px;
+        margin-bottom: 15px; /* 增加段落之间的间距 */
+        font-weight: 400;
+      }
+    
+      /* 引用 blockquote 样式 */
+      blockquote {
+        border-left: 4px solid #4a4a4a;
+        padding: 15px 20px;
+        margin: 20px 0;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        font-style: italic;
+        color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    
+      blockquote p {
+        margin: 0;
+        line-height: 1.6;
+      }
+    
+      /* 代码块样式 */
+      pre {
+        margin: 20px 0; /* 增加上下边距 */
+        padding: 15px; /* 增加内边距，让代码块更易读 */
+        background-color: #f4f4f4; /* 背景颜色 */
+        border-radius: 5px; /* 圆角效果 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+        font-size: 1rem; /* 设置字体大小 */
+        overflow-x: auto; /* 如果代码过长，则启用水平滚动 */
+      }
+
+      pre code {
+        font-size: inherit; /* 继承父元素字体大小 */
+        white-space: pre-wrap; /* 代码换行 */
+        border: 0;
+        background: inherit; /* 保持背景一致 */
+        color: inherit; /* 保持文字颜色一致 */
+        padding: 0; /* 去除额外内边距 */
+      }
+
+      /* 单行代码块 */
+      code {
+        padding: 2px 4px; /* 增加内边距 */
+        background-color: #f4f4f4;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+    
+      /* 无序列表样式 */
+      ul {
+        list-style-type: disc; /* 圆点列表 */
+        margin-top: 5px;
+      }
+    
+      ul li {
+        margin-bottom: 5px; /* 增加列表项之间的间距 */
+      }
+    
+      /* 有序列表样式 */
+      ol {
+        margin-top: 5px;
+      }
+    
+      ol li {
+        margin-bottom: 5px; /* 增加列表项之间的间距 */
+      }
+    
+      /* 图片样式 */
+      img {
+        max-width: 90%; /* 图片最大宽度100% */
+        height: auto; /* 高度自适应 */
+        display: block; /* 去除图片底部空隙 */
+        margin: 10px auto; /* 图片上下间距 */
+        border-radius: 4px; /* 为图片添加圆角 */
+      }
+    
+      /* 表格样式 */
+      table {
+        width: 100%; /* 让表格占满容器宽度 */
+        margin: 10px 0; /* 表格上下间距 */
+        border-collapse: collapse; /* 合并表格边框 */
+      }
+    
+      table th,
+      table td {
+        padding: 10px; /* 内边距 */
+        text-align: left; /* 左对齐 */
+        border: 1px solid #ddd; /* 设置表格边框 */
+      }
+    
+      table th {
+        background-color: #f4f4f4; /* 设置表头背景色 */
+        font-weight: bold; /* 设置表头加粗 */
+      }
+    
+      table tr:nth-child(even) {
+        background-color: #f9f9f9; /* 设置偶数行的背景色 */
+      }
+    
+      table tr:hover {
+        background-color: #f1f1f1; /* 鼠标悬停时改变行背景色 */
+      }
+    
+      /* 水平分隔线样式 */
+      hr {
+        border: 0;
+        height: 1px;
+        background-color: #ccc; /* 灰色分隔线 */
+        margin: 20px 0; /* 分隔线上下间距 */
+      }
+    
+      /* 强调文本样式 */
+      strong {
+        font-weight: bold;
+        color: #2F69B3; /* 强调文字的颜色 */
+      }
+    
+      em {
+        font-style: italic;
+        color: #8C8C8C; /* 强调文字为斜体且使用灰色 */
+      }
+    }
+
+    .post-footer {
+      border-bottom: 1px solid #f2f2f2;
+
+      .meta {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: bold;
+
+        a {
+          color: #ffffff;
+
+          &:hover {
+            color: #4786D6;
+          }
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .meta {
+          font-size: 9px; /* 调整为较小的字体大小 */
+          line-height: 1.3; /* 缩小行间距 */
+        }
+      }
+
+      .tags {
+        a {
+          color: rgba(0, 0, 0, 0.44);
+        }
+      }
+    }
+  }
+
+  .post-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .post-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .pagination {
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  #disqus_thread {
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .footer {
+    color: #A6A6A6;
+
+    a {
+      color: #A6A6A6;
+    }
+
+    a:hover {
+      color: #4786D6;
+    }
+  }
+
+  /*for archive*/
+  .list-with-title {
+    .listing-title {
+      color: #666666;
+    }
+
+    .listing {
+      .listing-post {
+        .post-time {
+          color: #C5C5C5;
+        }
+
+        a {
+          color: #8F8F8F;
+
+          &:hover {
+            color: #4786D6;
+          }
+        }
+      }
+    }
+
+    .tag-list-item {
+      .tagcount {
+        color: #000000;
+      }
+    }
+  }
+
+  /* share */
+  .evernote {
+    background-color: #3E3E3E;
+
+    a {
+      color: #fff;
+    }
+
+    a:hover {
+      color: #ED6243;
+    }
+  }
+
+  .weibo {
+    background-color: #ED6243;
+
+    a:hover {
+      color: #BD4226;
+    }
+  }
+
+  .twitter {
+    background-color: #59C0FD;
+
+    a:hover {
+      color: #4B9ECE;
+    }
+  }
+
+  /* comments */
+
+  .comment-count {
+    color: #666;
+  }
+
+  .tab-community {
+    color: #666;
+  }
+
+  a.btn {
+    color: #868686;
+  }
+
+  .btn {
+    color: rgba(0, 0, 0, 0.44);
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .btn:hover {
+    color: #464545;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #464545;
+  }
+
+  .menu {
+    .btn-down {
+      li {
+        a {
+          color: rgba(0, 0, 0, 0.44);
+          background: rgba(0, 0, 0, 0);
+          border: 1px solid rgba(0, 0, 0, 0.15);
+
+          &:hover {
+            color: #fff;
+            background: #3CBD10;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#vcomments {
+    max-width: 94%; /* 设置评论区最大宽度 */
+    margin: 10px auto; /* 减少上方和下方的间距 */
+    padding: 10px; /* 减少内边距，缩小高度 */
+    border-radius: 10px; /* 圆角 */
+    background-color: #fff; /* 背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+    font-family: 'Arial', sans-serif; /* 使用简洁的字体 */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.valine-comment {
+    font-size: 14px; /* 评论内容字体大小 */
+    line-height: 1.5; /* 行高 */
+    color: #333; /* 文字颜色 */
+}
+
+.valine-input {
+    border: 1px solid #ddd; /* 输入框的边框 */
+    padding: 5px; /* 减少内边距 */
+    border-radius: 4px; /* 输入框的圆角 */
+    width: 50%; /* 输入框宽度设置为50% */
+    height: 30px; /* 设置输入框高度 */
+}
+
+
+.calendar {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 90%;
+  background-color: #fff; /* 背景颜色 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  padding: 20px; /* 内边距 */
+  transition: box-shadow 0.3s; /* 过渡效果 */
+}
+
+/* 鼠标悬停效果 */
+
+#category {
+  border: 1px solid #ccc; /* 添加边框 */
+  padding: 10px; /* 内边距 */
+  margin-top: 1px; /* 上边距 */
+  background-color: #f9f9f9; /* 背景颜色 */
+  border-radius: 5px; /* 圆角效果 */
+}
+
+.calendar:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 增强阴影效果 */
+}
+.details-2 ::-webkit-details-marker {
+  display: none;
+}
+
+.details-2 ::-moz-list-bullet {
+    font-size: 0;
+}
+.details-2 summary {
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc; /* 添加边框 */
+    border-radius: 4px; /* 可选：添加圆角效果 */
+}
+.details-2 content {
+    display: block;
+    padding: 5px;
+    background-color: #f5f7f7;
+}
+/* 自定义的三角 */
+.details-2 summary::after {
+    content: '';
+    position: absolute;
+    width: 1em; height: 1em;
+    margin: .2em 0 0 .5ch;
+    background: url(./arrow-on.svg) no-repeat;
+    background-size: 100% 100%;
+    transition: transform .2s;
+}
+.details-2:not([open]) summary::after {
+    margin-top: .25em;
+    transform: rotate(90deg);    
+}
+summary {
+    user-select: none;
+    outline: 0;
+}
+summary a {
+    color: inherit;
+}
+
+/* link */
+.links-content {
+  margin-top: 1rem;
+}
+
+.link-navigation::after {
+  content: " ";
+  display: flex;
+  clear: both;
+}
+
+.card {
+  margin: 10px 15px 1rem; /* 合并margin设置 */
+  width: calc(20% - 25px); /* 调整width以适应新margin */
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  transition: transform 0.15s, box-shadow 0.15s; /* 使用transition简化效果 */
+}
+
+.card:nth-child(odd) {
+  float: left;
+}
+
+.card:nth-child(even) {
+  float: right;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+.card a {
+  border: none; /* 清除边框 */
+}
+
+.card .ava {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 1em 0 0; /* 合并margin设置 */
+  border-radius: 4px;
+}
+
+.card .card-header {
+  font-style: italic;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card .card-header a {
+  font-style: normal;
+  color: #2bbc8a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card .card-header a:hover {
+  color: #d480aa;
+}
+
+.card .card-header .info {
+  font-style: normal;
+  color: #a3a3a3;
+  font-size: 14px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/*search*/
+/* 搜索页面弹窗 */
+.search-overlay {
+  position: fixed;
+  width: 95%;
+  height: 80vh;
+  display: none; /* 默认隐藏 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  backdrop-filter: blur(10px); /* 毛玻璃效果 */
+  z-index: 1000;
+  justify-content: center;
+  align-items: flex-start; /* 从顶部对齐 */
+}
+
+/* 搜索框容器 */
+.search-container {
+  background-color: white;
+  padding: 2rem 4rem 2rem 2rem; /* 上 2rem, 右 3rem, 下 2rem, 左 3rem */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 90%; /* 增加最大宽度 */
+  width: 100%;
+  position: absolute; /* 使用绝对定位 */
+  top: 10%; /* 位置 */
+  transform: translate(-50%, 0); /* 使容器在水平和垂直上居中 */
+  left: 50%; /* 水平居中 */
+}
+
+/* 搜索输入框 */
+#search {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+/* 关闭按钮 */
+#close-search {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001; /* 确保按钮位于最前 */
+  color: #333; /* 关闭按钮颜色 */
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+/* 搜索结果样式 */
+.search-results {
+  height: 500px;
+  overflow-y: auto; /* 允许上下滚动 */
+  list-style-type: none; /* 去掉默认列表样式 */
+  padding: 0; /* 去掉内边距 */
+  margin: 0; /* 去掉外边距 */
+}
+
+/* 搜索结果项 */
+.search-results__item {
+  height: 80px; /* 固定高度 */
+  margin-bottom: 1rem; /* 项目之间的间距 */
+  padding: 0.5rem; /* 内边距 */
+  border-bottom: 1px solid #ddd; /* 底部边框 */
+  transition: background-color 0.3s ease; /* 背景色变化效果 */
+  font-size: 0.85rem; /* 缩小字体大小 */
+}
+
+/* 悬停效果 */
+.search-results__item:hover {
+  background-color: #f9f9f9; /* 鼠标悬停时改变背景色 */
+}
+
+/* 搜索结果标题 */
+.search-results__item a {
+  font-size: 1rem; /* 搜索结果标题的字体大小 */
+  color: #333; /* 标题颜色 */
+  text-decoration: none; /* 去掉下划线 */
+}
+
+/* 搜索结果摘要 */
+.search-results__teaser {
+  font-size: 0.8rem; /* 搜索结果摘要的字体大小 */
+  color: #666; /* 摘要颜色 */
+}
+
+/* 搜索图标 */
+#search-ico {
+  font-family: 'FabricMDL2Icons';
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 90%; /* 移动端最大宽度调整 */
+  }
+}
+
+
+.globe_css {
+  display: block; /* 确保在桌面端显示 */
+}
+
+/* 在移动端隐藏内容 */
+@media (max-width: 768px) {
+  .globe_css {
+      display: none; /* 在屏幕宽度小于768px时隐藏 */
+  }
+}

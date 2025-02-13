@@ -1,0 +1,46 @@
+{% block js %}
+<!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+{% endblock js %}
+
+<!-- CSS -->
+{% block css %}
+<!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+{% endblock css %}  
+
+<!-- <div id="gitalk-container"></div>
+
+<script>    
+  const gitalk = new Gitalk({
+    clientID: 'a25af9614e21960dad5d', 
+    clientSecret: 'dbd6035801c97948cb48b385a6a38fe635c72722', 
+    repo: 'King-Key.github.io',  
+    owner: 'King-Key', 
+    admin: 'King-Key', 
+    id: location.pathname, 
+    createIssueManually: true,
+    title: (decodeURIComponent(location.pathname)).substring(0,49),
+    distractionFreeMode: false,
+    proxy: "https://vercel.prohibitorum.top/github_access_token"
+  })
+  gitalk.render('gitalk-container')
+</script> -->
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<div class="post-footer">
+  <div id="vcomments"></div>
+  <script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'GTyEVU5y7iX6Ftyj1izBCIwc-gzGzoHsz',
+        appKey: 'DfMKrfk6nvXXVAI23GDU3dMH',
+        emojiCDN: '//cdn.jsdelivr.net/gh/Moefyit/Valine-emoji@latest',
+        emojiMaps: {
+            "smile": "smile.png", // 自定义表情
+        },
+        after_load: function() {
+            document.getElementById('loading').style.display = 'none'; // 加载完成后隐藏加载指示器
+        }
+    });
+  </script>
+</div>

@@ -1,0 +1,29 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="archive animated fadeInDown">
+    <ul class="list-with-title">    
+        {% for term in terms %}
+          <details>
+            <summary>
+                <li class="tag-list-item">
+                    <i class="fas fa-tags"></i>{{ term.name }}
+                    <span class="tagcount">{{ term.pages | length }}</span>
+                </li>
+            </summary>
+
+            <div class="sub-list">
+                {% for post in term.pages %}
+                    <div class="listing-item">
+                        <div class="listing-post">
+                            <span class="date">{{ post.date | date(format=trans(key="date_format", lang=lang)) }}</span> :
+                            <a href="{{ post.permalink }}" title="{{ post.title }}">{{ post.title }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+          </details>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

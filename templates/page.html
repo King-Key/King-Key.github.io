@@ -1,0 +1,115 @@
+{% extends "basic.html" %}
+
+{% block title %}{{ config.title }} • {{ page.title }}{% endblock title %}
+
+{% block content %}
+
+<script src="{{ get_url(path='js/jquery-1.7.2.min.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="{{ page.permalink }}">{{ page.title }}</a></h1>
+  <div class="info">
+    {% if page.taxonomies.tags %}
+      <i class="fas fa-tags"></i>
+      {% for tag in page.taxonomies.tags %}
+        <a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">{{ tag }}&nbsp;&nbsp;</a>
+      {% endfor %}
+    {% endif %}
+    
+    {% if page.date %}
+      <i class="far fa-sun"></i>
+      <i>Push time: {{ page.date | date(format="%Y-%m-%d %H:%M:%S") }}&nbsp;&nbsp;</i>
+    {% endif %}
+    
+    <i class="fa-regular fa-comment"></i>
+    <a href="{{ page.permalink }}#vcomments" class="comment-button">评论</a>
+    <hr>
+  </div>
+
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content">{{ page.content | safe }}</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+      </div>
+    </div>
+  </div>
+</article>
+
+{% if page.extra.mathjax %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/{{ page.extra.mathjax }}-chtml.js"></script>
+{% endif %}
+
+{% if page.extra.tikzjax %}
+<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<style>
+  .tikz > svg { overflow: visible; }
+</style>
+<script src="{{ get_url(path='js/tikzjax.js', trailing_slash=false) }}"></script>
+{% endif %}
+
+{% if page.extra.mermaid %}
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+{% endif %}
+
+{% block js %}
+{% endblock js %}
+
+<!-- CSS -->
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+{% endblock css %}  
+
+{% include "extra/gitalk.html" %}
+
+{% endblock content %}

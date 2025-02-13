@@ -1,0 +1,39 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<article class="post animated fadeInDown，post article-page">
+  <div class="post-content">{{ section.content | safe }}</div>
+</article>
+
+
+<!-- <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <div id="gitalk-container"></div>
+          <script>    
+          const gitalk = new Gitalk({
+            clientID: 'a25af9614e21960dad5d', 
+            clientSecret: 'dbd6035801c97948cb48b385a6a38fe635c72722', 
+            repo: 'King-Key.github.io',  
+            owner: 'King-Key', 
+            admin: 'King-Key', 
+            id: location.pathname, 
+            createIssueManually: true,
+            title: (decodeURIComponent(location.pathname)).substring(0,49),
+            distractionFreeMode: false ,
+            proxy: "https://vercel.prohibitorum.top/github_access_token"
+          })
+          gitalk.render('gitalk-container')
+        </script>
+      </div>
+    </div>
+  </div> -->
+
+  {% include "extra/gitalk.html" %}
+
+
+{% endblock content %}
+
+
