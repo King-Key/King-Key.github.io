@@ -978,12 +978,6 @@ html.theme--light a:active {
 }
 html.theme--light .page-top {
   background-color: #fff;
-  padding-left: 15%;
-  /* 在小屏幕设备上减小左右间距 */
-  padding-right: 5%;
-  /* 确保右侧也有间距 */
-  max-width: 1200px;
-  /* 设置最大宽度，确保在大屏幕上不会过宽 */
   margin: 0 auto;
   /* 自动左右边距使其居中对齐 */
 }
@@ -1012,16 +1006,12 @@ html.theme--light .page-top .information #language-switch #languages a:hover {
 }
 @media (max-width: 768px) {
   html.theme--light .page-top {
-    padding-left: 2%;
-    /* 保持小屏幕上的间距 */
     margin: 0 auto;
     /* 保证仍然居中 */
   }
 }
 @media (max-width: 480px) {
   html.theme--light .page-top {
-    padding-left: 10px;
-    /* 在极小屏幕下进一步减小间距 */
     margin: 0 auto;
     /* 保证仍然居中 */
   }
@@ -1312,6 +1302,7 @@ html.theme--light .post-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-left: 5px;
 }
 html.theme--light .post-row {
   display: flex;
