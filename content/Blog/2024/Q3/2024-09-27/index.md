@@ -1,6 +1,9 @@
 ---
 title: 在zola博客里面增加搜索功能
 date: 2024-09-27  12:53:20 
+taxonomies:
+  tags:
+    - zola
 ---
 
 > 在zola主题博客中，引入搜索功能
