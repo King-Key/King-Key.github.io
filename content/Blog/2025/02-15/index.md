@@ -6,7 +6,7 @@ taxonomies:
     - 胡思乱想
 ---
 
-![alt text](02-15/image.png)
+![alt text](image.png)
 
 青稞AI 公众号一直是以纯粹的技术分享为主，当然中间也会掺杂广告（青稞Talk的宣传），所以本身对公众号的体量没有太高的要求。
 

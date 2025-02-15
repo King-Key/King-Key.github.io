@@ -13,7 +13,7 @@ taxonomies:
 
 使用终端pull & 运行 r1。官网有不同参数版本的r1模型，量力选择！
 
-![alt text](02-14/image-1.png)
+![alt text](image-1.png)
 
 ```
 ollama run deepseek-r1:7b
@@ -22,11 +22,11 @@ ollama run deepseek-r1:7b
 ## 在VSCode中使用
 vscode插件中，搜索`Continue`插件安装
 
-![alt text](02-14/image.png)
+![alt text](image.png)
 
 选择本地的 `ollama` 服务，并选择 `r1` 模型即可
 
-![alt text](02-14/image-2.png)
+![alt text](image-2.png)
 
 `Continue`可以通过 `@` 实现文档内容交互
 
