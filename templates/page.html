@@ -44,20 +44,21 @@
 <article class="post animated fadeInDown post article-page">
   <h1><a href="{{ page.permalink }}">{{ page.title }}</a></h1>
   <div class="info">
+    {% if page.date %}
+      <i class="far fa-sun"></i>
+      <i>Push time: {{ page.date | date(format="%Y-%m-%d %H:%M:%S") }}&nbsp;&nbsp;</i>
+    {% endif %}
+
     {% if page.taxonomies.tags %}
       <i class="fas fa-tags"></i>
       {% for tag in page.taxonomies.tags %}
         <a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">{{ tag }}&nbsp;&nbsp;</a>
       {% endfor %}
     {% endif %}
-    
-    {% if page.date %}
-      <i class="far fa-sun"></i>
-      <i>Push time: {{ page.date | date(format="%Y-%m-%d %H:%M:%S") }}&nbsp;&nbsp;</i>
-    {% endif %}
+
     <hr>
   </div>
-
+  <!-- toc -->
   <details class="details-2" open>
     <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
     <div id="category"></div>
@@ -68,6 +69,46 @@
     <div class="meta">
       <div class="info">
         <!-- 这里可以添加额外的 meta 信息 -->
+        {# 修改后的导航部分 #}
+        {% set section_path = page.ancestors | last %}
+        {% set section = get_section(path=section_path) %}
+    
+        {# 获取当前页面索引 #}
+        {% set_global current_index = -1 %}
+        {% for p in section.pages %}
+          {% if p.permalink == page.permalink %}
+            {% set_global current_index = loop.index0 %}
+          {% endif %}
+        {% endfor %}
+        <div class="post-navigation">
+          {# 上一篇 #}
+          <div class="nav-item prev">
+            {% if current_index > 0 %}
+              {% set prev_index = current_index - 1 %}
+              {% set prev_page = section.pages[prev_index] %}
+              <a href="{{ prev_page.permalink }}" class="nav-link">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-title">{{ prev_page.title | truncate(length=50) }}</span>
+              </a>
+            {% else %}
+              <span class="nav-disabled"></span>
+            {% endif %}
+          </div>
+      
+          {# 下一篇 #}
+          <div class="nav-item next">
+            {% if current_index < section.pages | length - 1 %}
+              {% set next_index = current_index + 1 %}
+              {% set next_page = section.pages[next_index] %}
+              <a href="{{ next_page.permalink }}" class="nav-link">
+                <span class="nav-title">{{ next_page.title | truncate(length=50) }}</span>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            {% else %}
+              <span class="nav-disabled"></span>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -105,6 +146,60 @@
 <!-- CSS -->
 {% block css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+  .post-navigation {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+  }
+
+  .nav-item {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .nav-item.prev {
+    text-align: left;
+    padding-right: 1rem;
+  }
+
+  .nav-item.next {
+    text-align: right;
+    padding-left: 1rem;
+  }
+
+  .nav-link {
+    color: #2c3e50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .nav-disabled {
+    color: #95a5a6;
+    font-style: italic;
+  }
+
+  .nav-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .nav-title {
+      max-width: 30vw;
+    }
+  }
+</style>
 {% endblock css %}  
 
 {% endblock content %}
