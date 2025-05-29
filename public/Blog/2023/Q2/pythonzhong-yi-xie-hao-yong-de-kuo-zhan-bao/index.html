@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo • Python中一些好用的扩展包</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.333-5.466-5.932 0-1.31.47-2.38 1.235-3.22-.125-.303-.535-1.523.115-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.404c1.02.005 2.045.138 3 .404 2.28-1.552 3.285-1.23 3.285-1.23.655 1.653.245 2.873.12 3.176.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.628-5.475 5.922.43.37.815 1.103.815 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/> </svg></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50"> <path d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"></path> </svg></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256"> <g fill="#fa5252" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M35,22v2h1v-2zM35,22v2h1v-2zM44,4h-38c-1.09,0 -2,0.91 -2,2v38c0,1.09 0.91,2 2,2h38c1.09,0 2,-0.91 2,-2v-38c0,-1.09 -0.91,-2 -2,-2zM12,24c0,1.38 -0.19,5.89 -2.61,6.24l-0.28,-1.98c0.39,-0.19 0.89,-2.14 0.89,-4.26v-2h2zM15,30h-2v-11h2zM17.29,29.71c-1.2,-1.2 -1.29,-4.73 -1.29,-5.78v-1.93h2v1.93c0,1.91 0.34,3.99 0.71,4.36zM22,31h-3l1,-2h3zM31,31h-7l1,-2h2v-7h-2l-2.1,4.38h1.72l-1,2h-2.62c-0.8,0 -1.28,-0.91 -0.82,-1.57l1.82,-2.81h-2c-0.78,0 -1.26,-0.85 -0.86,-1.51l3,-5l1.72,1.02l-2.09,3.49h3.23v-2h6v2h-2v7h2zM40,28.5c0,1.38 -1.12,2.5 -2.5,2.5c-1.21,0 -1.22,-0.86 -1.45,-2h1.95v-3h-3v5h-2v-5h-2v-2h2v-2h-1v-2h1v-1h2v1h1c1.1,0 2,0.9 2,2v2c1.1,0 2,0.9 2,2zM40,22h-1v-1c0,-0.55 0.45,-1 1,-1c0.55,0 1,0.45 1,1c0,0.55 -0.45,1 -1,1zM35,24h1v-2h-1zM35,22v2h1v-2z"></path></g></g> </svg></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24"> <path d="M6.217 13.408c.447.18 1.379.359 2.132.359.812 0 1.264-.247 1.3-.632.033-.35-.299-.398-1.216-.637-1.267-.342-2.075-.871-1.996-1.717.092-.982 1.286-1.724 3.118-1.724.893 0 1.759.069 2.208.231l-.154 1.238c-.291-.112-1.406-.266-2.16-.266-.765 0-1.16.265-1.188.555-.034.367.363.385 1.356.676 1.345.376 1.933.905 1.856 1.725C11.382 14.18 10.308 15 8.163 15 7.27 15 6.5 14.821 6.076 14.641L6.217 13.408 6.217 13.408zM18.821 9.366c4.884-1.017 5.305.811 5.154 2.428l-.284 2.992h-1.55l.259-2.729c.056-.601.405-1.776-1.281-1.732-.584.016-.873.104-.873.104s-.051.726-.112 1.263l-.294 3.095h-1.52l.302-3.05C18.622 11.736 18.821 9.366 18.821 9.366zM12.653 9.224c.349-.042.884-.084 1.621-.084 1.23 0 2.225.236 2.841.734.553.464.921 1.214.819 2.302-.094 1.012-.57 1.721-1.264 2.159-.635.413-1.434.59-2.637.59-.709 0-1.385-.042-1.9-.126L12.653 9.224 12.653 9.224zM13.669 13.69c.119.025.274.051.582.051 1.231 0 2.098-.668 2.185-1.607.127-1.358-.643-1.832-1.94-1.824-.168 0-.401 0-.525.025L13.669 13.69 13.669 13.69zM5.335 14.813C5.043 14.924 4.439 15 3.595 15c-2.427 0-3.737-1.254-3.583-2.913C.198 10.112 2.139 9 4.264 9c.823 0 1.308.073 1.762.195L5.88 10.526c-.302-.112-1.01-.215-1.583-.215-1.25 0-2.312.41-2.434 1.707-.109 1.16.637 1.714 2.044 1.714.49 0 1.212-.077 1.545-.189C5.452 13.544 5.335 14.813 5.335 14.813z"></path> </svg></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+<script src="https://king-key.github.io/js/jquery-1.7.2.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;pythonzhong-yi-xie-hao-yong-de-kuo-zhan-bao&#x2F;">Python中一些好用的扩展包</a></h1>
+  <div class="info">
+    
+      <i class="far fa-sun"></i>
+      <i>Push time: 2023-04-04 12:22:01&nbsp;&nbsp;</i>
+    
+
+    
+
+    <hr>
+  </div>
+  <!-- toc -->
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>正所谓“工欲善其事，必先利其器”。推荐几个常用的、且非常方便的Python扩展库</p>
+</blockquote>
+<h2 id="1-pqi">1、<a href="https://pypi.org/project/pqi/">pqi</a></h2>
+<blockquote>
+<p>pqi解决pip安装速度较慢的问题</p>
+</blockquote>
+<p>pip安装默认的软件源是国外的，下载起来速度很慢，而将软件源换成国内的镜像源之后，可以提高下载速度。手动编辑源文件比较麻烦，pqi则可以帮助我们直接切换软件源。</p>
+<ul>
+<li>
+<p>安装<code>pip install pqi</code></p>
+</li>
+<li>
+<p>使用方法</p>
+</li>
+</ul>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>Usage:
+</span><span>  pqi ls
+</span><span>  pqi use &lt;name&gt;
+</span><span>  pqi show
+</span><span>  pqi add &lt;name&gt; &lt;url&gt;
+</span><span>  pqi remove &lt;name&gt;
+</span><span>  pqi (-h | --help)
+</span><span>  pqi (-v | --version)
+</span><span>Options:
+</span><span>  -h --help        Show this screen.
+</span><span>  -v --version     Show version.
+</span></code></pre>
+<p>查看当前的pip软件源<code>pqi show</code></p>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>Current source is aliyun(https://mirrors.aliyun.com/pypi/simple/).
+</span></code></pre>
+<p>pqi中内置了5个软件源<code>pqi ls</code></p>
+<pre data-lang="shell" style="background-color:#eff1f5;color:#4f5b66;" class="language-shell "><code class="language-shell" data-lang="shell"><span>pypi 	 https://pypi.python.org/simple/
+</span><span>tuna 	 https://pypi.tuna.tsinghua.edu.cn/simple
+</span><span>douban 	 http://pypi.douban.com/simple/
+</span><span>aliyun 	 https://mirrors.aliyun.com/pypi/simple/
+</span><span>ustc 	 https://mirrors.ustc.edu.cn/pypi/web/simple
+</span></code></pre>
+<p>切换软件源<code>pqi use [url name]</code>，比如<code> pqi use douban</code>，这样再查看软件源粉时候就发现已经切换了。</p>
+<h2 id="2-pipreqs">2、<a href="https://pypi.org/project/pipreqs/">pipreqs</a></h2>
+<blockquote>
+<p>pipreqs可以生成Python依赖包清单，也就是导出requirements.txt文件</p>
+</blockquote>
+<p>与<code>pip freeze &gt; requirements.txt</code>的功能类似，但pipreqs只导出<strong>指定项目所依赖的组件及其版本👌</strong>，相比于前者导出<strong>当前python环境下所有安装的组件</strong>，pipsegs的导出会更轻量化。</p>
+<ul>
+<li>安装<code>pip install pipreqs</code></li>
+<li>使用方法</li>
+</ul>
+<p><code>pipreqs 项目路径</code>，比如<code>pipreqs ./</code>。</p>
+<ul>
+<li>对比一下freeze和pipreqs</li>
+</ul>
+<table><thead><tr><th style="text-align: center"><code>pip list</code></th><th style="text-align: center"><code>pip freeze &gt; requirements.txt</code></th><th style="text-align: center"><code>pipreqs ./</code></th></tr></thead><tbody>
+<tr><td style="text-align: center">aiofiles              23.1.0<br/>altair                4.2.2<br/>anyio                 3.6.2<br/>attrs                 22.2.0<br/>blinker               1.5<br/>cachetools            5.3.0<br/>certifi               2022.12.7<br/>charset-normalizer    3.1.0<br/>ci-info               0.3.0<br/>click                 8.1.3<br/>configobj             5.0.8<br/>configparser          5.3.0<br/>decorator             5.1.1<br/>entrypoints           0.4<br/>etelemetry            0.3.0<br/>filelock              3.10.7<br/>fitz                  0.0.1.dev2<br/>frontend              0.0.3<br/>future                0.18.3<br/>gitdb                 4.0.10<br/>GitPython             3.1.31<br/>h11                   0.14.0<br/>httplib2              0.22.0<br/>idna                  3.4<br/>importlib-metadata    6.1.0<br/>isodate               0.6.1<br/>itsdangerous          2.1.2<br/>Jinja2                3.1.2<br/>jsonschema            4.17.3<br/>looseversion          1.1.2<br/>lxml                  4.9.2<br/>markdown-it-py        2.2.0<br/>MarkupSafe            2.1.2<br/>mdurl                 0.1.2<br/>networkx              3.0<br/>nibabel               5.0.1<br/>nipype                1.8.5<br/>numpy                 1.24.2<br/>packaging             23.0<br/>pandas                1.5.3<br/>pathlib               1.0.1<br/>Pillow                9.4.0<br/>pip                   22.0.2<br/>protobuf              3.20.3<br/>prov                  2.0.0<br/>pyarrow               11.0.0<br/>pydeck                0.8.0<br/>pydot                 1.4.2<br/>Pygments              2.14.0<br/>Pympler               1.0.1<br/>PyMuPDF               1.21.1<br/>pyparsing             3.0.9<br/>pyrsistent            0.19.3<br/>python-dateutil       2.8.2<br/>pytils                0.4.1<br/>pytz                  2022.7.1<br/>pytz-deprecation-shim 0.1.0.post0<br/>pyxnat                1.5<br/>rdflib                6.3.1<br/>requests              2.28.2<br/>rich                  13.3.2<br/>scipy                 1.10.1<br/>semver                2.13.0<br/>setuptools            59.6.0<br/>simplejson            3.18.4<br/>six                   1.16.0<br/>smmap                 5.0.0<br/>sniffio               1.3.0<br/>starlette             0.26.1<br/>stqdm                 0.0.5<br/>streamlit             1.20.0<br/>toml                  0.10.2<br/>tools                 0.1.9<br/>toolz                 0.12.0<br/>tornado               6.2<br/>tqdm                  4.65.0<br/>traits                6.3.2<br/>typing_extensions     4.5.0<br/>tzdata                2022.7<br/>tzlocal               4.3<br/>urllib3               1.26.15<br/>uvicorn               0.21.1<br/>validators            0.20.0<br/>watchdog              3.0.0<br/>wheel                 0.37.1<br/>zipp                  3.15.0</td><td style="text-align: center">aiofiles==23.1.0<br/>altair==4.2.2<br/>anyio==3.6.2<br/>attrs==22.2.0<br/>blinker==1.5<br/>cachetools==5.3.0<br/>certifi==2022.12.7<br/>charset-normalizer==3.1.0<br/>ci-info==0.3.0<br/>click==8.1.3<br/>configobj==5.0.8<br/>configparser==5.3.0<br/>decorator==5.1.1<br/>entrypoints==0.4<br/>etelemetry==0.3.0<br/>filelock==3.10.7<br/>fitz==0.0.1.dev2<br/>frontend==0.0.3<br/>future==0.18.3<br/>gitdb==4.0.10<br/>GitPython==3.1.31<br/>h11==0.14.0<br/>httplib2==0.22.0<br/>idna==3.4<br/>importlib-metadata==6.1.0<br/>isodate==0.6.1<br/>itsdangerous==2.1.2<br/>Jinja2==3.1.2<br/>jsonschema==4.17.3<br/>looseversion==1.1.2<br/>lxml==4.9.2<br/>markdown-it-py==2.2.0<br/>MarkupSafe==2.1.2<br/>mdurl==0.1.2<br/>networkx==3.0<br/>nibabel==5.0.1<br/>nipype==1.8.5<br/>numpy==1.24.2<br/>packaging==23.0<br/>pandas==1.5.3<br/>pathlib==1.0.1<br/>Pillow==9.4.0<br/>protobuf==3.20.3<br/>prov==2.0.0<br/>pyarrow==11.0.0<br/>pydeck==0.8.0<br/>pydot==1.4.2<br/>Pygments==2.14.0<br/>Pympler==1.0.1<br/>PyMuPDF==1.21.1<br/>pyparsing==3.0.9<br/>pyrsistent==0.19.3<br/>python-dateutil==2.8.2<br/>pytils==0.4.1<br/>pytz==2022.7.1<br/>pytz-deprecation-shim==0.1.0.post0<br/>pyxnat==1.5<br/>rdflib==6.3.1<br/>requests==2.28.2<br/>rich==13.3.2<br/>scipy==1.10.1<br/>semver==2.13.0<br/>simplejson==3.18.4<br/>six==1.16.0<br/>smmap==5.0.0<br/>sniffio==1.3.0<br/>starlette==0.26.1<br/>stqdm==0.0.5<br/>streamlit==1.20.0<br/>toml==0.10.2<br/>tools==0.1.9<br/>toolz==0.12.0<br/>tornado==6.2<br/>tqdm==4.65.0<br/>traits==6.3.2<br/>typing_extensions==4.5.0<br/>tzdata==2022.7<br/>tzlocal==4.3<br/>urllib3==1.26.15<br/>uvicorn==0.21.1<br/>validators==0.20.0<br/>watchdog==3.0.0<br/>zipp==3.15.0</td><td style="text-align: center">PyMuPDF==1.21.1<br />streamlit==1.20.0</td></tr>
+</tbody></table>
+<h2 id="3-streamlit">3、<a href="https://streamlit.io/">Streamlit</a></h2>
+<blockquote>
+<p>Streamlit主要用来创建App，并且可以方便的和Python结合以及部署。相关的安装使用可以参考之前的文章</p>
+</blockquote>
+<p>{% link Streamlit App创建,Guo Wang,https://King-Key.github.io/posts/34479.html%}</p>
+<p>{% link Streamlit App多页面运行,Guo Wang,https://King-Key.github.io/posts/22558.html%}</p>
+<p>{% link streamlit cloud部署一个streamlit App,Guo Wang,https://King-Key.github.io/posts/cda857c1.html%}</p>
+<h2 id="4-tqdm">4、<a href="https://tqdm.github.io/">tqdm</a></h2>
+<blockquote>
+<p>tqdm是一个进度条模块</p>
+</blockquote>
+<ul>
+<li>安装<code>pip install tqdm</code></li>
+<li>使用方法，在Python文件中直接引入使用即可</li>
+</ul>
+<p><img src="https://img.tqdm.ml/tqdm.gif" alt="" /></p>
+<center>官方demo演示</center>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+        
+        
+        
+    
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <div class="post-navigation">
+          
+          <div class="nav-item prev">
+            
+              
+              
+              <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q2&#x2F;streamlit-cloudbu-shu-yi-ge-streamlit-app&#x2F;" class="nav-link">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-title">Streamlit Cloud部署一个Streamlit App</span>
+              </a>
+            
+          </div>
+      
+          
+          <div class="nav-item next">
+            
+              
+              
+              <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2023&#x2F;Q1&#x2F;googlecolab-stablediffusion&#x2F;" class="nav-link">
+                <span class="nav-title">4个开源Stable Diffusion项目</span>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+  .post-navigation {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+  }
+
+  .nav-item {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .nav-item.prev {
+    text-align: left;
+    padding-right: 1rem;
+  }
+
+  .nav-item.next {
+    text-align: right;
+    padding-left: 1rem;
+  }
+
+  .nav-link {
+    color: #2c3e50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .nav-disabled {
+    color: #95a5a6;
+    font-style: italic;
+  }
+
+  .nav-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .nav-title {
+      max-width: 30vw;
+    }
+  }
+</style>
+  
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

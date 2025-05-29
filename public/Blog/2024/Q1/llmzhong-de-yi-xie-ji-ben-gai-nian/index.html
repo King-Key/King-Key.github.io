@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en"  class="theme--light" >
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://king-key.github.io/style.css">
+  <title>Wang Guo • LLM中的一些基本概念</title>
+  
+  <link rel="alternate" type="application/rss+xml" title="Wang Guo" href="https://king-key.github.io/rss.xml">
+  
+  
+
+  
+  <script type="text/javascript" src="https://king-key.github.io/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://king-key.github.io/search_index.en.js" defer></script>
+  
+  <script type="text/javascript" src="https://king-key.github.io/js/search.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ["\\[", "\\]"]]
+      },
+      startup: {
+        ready: () => {
+          const prelist = document.getElementsByTagName("pre");
+          const codelist = document.getElementsByTagName("code");
+          const inline = MathJax.config.tex.inlineMath;
+          const display = MathJax.config.tex.displayMath;
+          const inlineRegexList = inline.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const displayRegexList = display.map(delim => `(${delim[0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})((.|[\\r\\n\\t])*?)(${delim[1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")})`);
+          const inlineRegExp = new RegExp(inlineRegexList.join("|"));
+          const displayRegExp = new RegExp(displayRegexList.join("|"));
+
+          for (let i = prelist.length; i > 0; i--) {
+            if (displayRegExp.test(prelist[i - 1].textContent)) {
+              const t = document.createTextNode(prelist[i - 1].textContent);
+              prelist[i - 1].parentNode.insertBefore(t, prelist[i - 1]);
+              prelist[i - 1].parentNode.removeChild(prelist[i - 1]);
+            }
+          }
+
+          for (let i = codelist.length; i > 0; i--) {
+            if (inlineRegExp.test(codelist[i - 1].textContent)) {
+              const t = document.createTextNode(codelist[i - 1].textContent);
+              codelist[i - 1].parentNode.insertBefore(t, codelist[i - 1]);
+              codelist[i - 1].parentNode.removeChild(codelist[i - 1]);
+            }
+          }
+
+          MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main');
+  
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // 切换侧边栏显示状态
+        mainContent.classList.toggle('active'); // 添加或移除遮罩效果
+      });
+  
+      // 点击主内容区域时，隐藏侧边栏
+      mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          mainContent.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <div class="logo">
+          <img src="https://king-key.github.io/images/logo.png" alt="Logo">
+        </div>
+        <h1><a href="https://king-key.github.io/">Wang Guo</a></h1>
+        <div class="description">
+          <p>王過</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      <li><a href="https://github.com/King-Key" aria-label="Go to Github profile page" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.333-5.466-5.932 0-1.31.47-2.38 1.235-3.22-.125-.303-.535-1.523.115-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.404c1.02.005 2.045.138 3 .404 2.28-1.552 3.285-1.23 3.285-1.23.655 1.653.245 2.873.12 3.176.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.628-5.475 5.922.43.37.815 1.103.815 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/> </svg></a></li>
+      <li><a href="https://twitter.com/WangGuo113" aria-label="Go to Twitter profile page" title="X"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50"> <path d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"></path> </svg></a></li>
+      <li><a class="link" href="https://www.xiaohongshu.com/user/profile/65a513af0000000003023abe" title="小红书"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256"> <g fill="#fa5252" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M35,22v2h1v-2zM35,22v2h1v-2zM44,4h-38c-1.09,0 -2,0.91 -2,2v38c0,1.09 0.91,2 2,2h38c1.09,0 2,-0.91 2,-2v-38c0,-1.09 -0.91,-2 -2,-2zM12,24c0,1.38 -0.19,5.89 -2.61,6.24l-0.28,-1.98c0.39,-0.19 0.89,-2.14 0.89,-4.26v-2h2zM15,30h-2v-11h2zM17.29,29.71c-1.2,-1.2 -1.29,-4.73 -1.29,-5.78v-1.93h2v1.93c0,1.91 0.34,3.99 0.71,4.36zM22,31h-3l1,-2h3zM31,31h-7l1,-2h2v-7h-2l-2.1,4.38h1.72l-1,2h-2.62c-0.8,0 -1.28,-0.91 -0.82,-1.57l1.82,-2.81h-2c-0.78,0 -1.26,-0.85 -0.86,-1.51l3,-5l1.72,1.02l-2.09,3.49h3.23v-2h6v2h-2v7h2zM40,28.5c0,1.38 -1.12,2.5 -2.5,2.5c-1.21,0 -1.22,-0.86 -1.45,-2h1.95v-3h-3v5h-2v-5h-2v-2h2v-2h-1v-2h1v-1h2v1h1c1.1,0 2,0.9 2,2v2c1.1,0 2,0.9 2,2zM40,22h-1v-1c0,-0.55 0.45,-1 1,-1c0.55,0 1,0.45 1,1c0,0.55 -0.45,1 -1,1zM35,24h1v-2h-1zM35,22v2h1v-2z"></path></g></g> </svg></a></li>
+      <li><a class="link" href="https://blog.csdn.net/King_key?type=blog" title="CSDN"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24"> <path d="M6.217 13.408c.447.18 1.379.359 2.132.359.812 0 1.264-.247 1.3-.632.033-.35-.299-.398-1.216-.637-1.267-.342-2.075-.871-1.996-1.717.092-.982 1.286-1.724 3.118-1.724.893 0 1.759.069 2.208.231l-.154 1.238c-.291-.112-1.406-.266-2.16-.266-.765 0-1.16.265-1.188.555-.034.367.363.385 1.356.676 1.345.376 1.933.905 1.856 1.725C11.382 14.18 10.308 15 8.163 15 7.27 15 6.5 14.821 6.076 14.641L6.217 13.408 6.217 13.408zM18.821 9.366c4.884-1.017 5.305.811 5.154 2.428l-.284 2.992h-1.55l.259-2.729c.056-.601.405-1.776-1.281-1.732-.584.016-.873.104-.873.104s-.051.726-.112 1.263l-.294 3.095h-1.52l.302-3.05C18.622 11.736 18.821 9.366 18.821 9.366zM12.653 9.224c.349-.042.884-.084 1.621-.084 1.23 0 2.225.236 2.841.734.553.464.921 1.214.819 2.302-.094 1.012-.57 1.721-1.264 2.159-.635.413-1.434.59-2.637.59-.709 0-1.385-.042-1.9-.126L12.653 9.224 12.653 9.224zM13.669 13.69c.119.025.274.051.582.051 1.231 0 2.098-.668 2.185-1.607.127-1.358-.643-1.832-1.94-1.824-.168 0-.401 0-.525.025L13.669 13.69 13.669 13.69zM5.335 14.813C5.043 14.924 4.439 15 3.595 15c-2.427 0-3.737-1.254-3.583-2.913C.198 10.112 2.139 9 4.264 9c.823 0 1.308.073 1.762.195L5.88 10.526c-.302-.112-1.01-.215-1.583-.215-1.25 0-2.312.41-2.434 1.707-.109 1.16.637 1.714 2.044 1.714.49 0 1.212-.077 1.545-.189C5.452 13.544 5.335 14.813 5.335 14.813z"></path> </svg></a></li>
+      
+      <li>
+        <span id="search-ico" class="ms-Icon--Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+      </li>
+      
+      
+    </ul>
+
+    <div class="page-top animated fadeInDown">
+      <div class="nav">
+        
+        
+        
+        
+        <li><a  href="https://king-key.github.io/">Home</a></li>
+        
+        <li><a  href="https://king-key.github.io/tags">Tags</a></li>
+        
+        <li><a  href="https://king-key.github.io/archive/">Archive</a></li>
+        <li><a  href="https://king-key.github.io/about/">About</a></li>
+        
+        <li><a  href="https://king-key.github.io/link/">Links</a></li>
+        
+        <li><a href="https://qingkelab.github.io">QingKe.AI</a></li>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      
+      <div class="globe_css">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=21aPpDAfbcdUW3w9EjOGl_8HnMFewhB-9j2dEF73OjM"></script>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="search-overlay">
+      <button id="close-search" class="close-button">✖</button>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <ul class="search-results">
+          <h2 class="search-results__header"></h2>
+          <ul class="search-results__items"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <div class="autopagerize_page_element">
+      <div class="content">
+        
+
+<script src="https://king-key.github.io/js/jquery-1.7.2.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // 清空目录以防重复
+      $("#category").empty();
+  
+      // 添加文章目录
+      $("h2,h3,h4,h5,h6").each(function(i, item) {
+          var tag = $(item).prop("tagName").toLowerCase();
+          var anchorId = "wow" + i;
+          $(item).attr("id", anchorId);
+          // 如果是第一个项目，不加 <br>
+          if (i === 0) {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a>`);
+          } else {
+              $("#category").append(`<a class="new${tag}" href="#${anchorId}">${$(item).text()}</a><br>`); // 添加 <br> 实现换行
+          }
+      });
+  
+      // 设置目录项的缩进
+      $(".newh2").css("margin-left", 0);
+      $(".newh3").css("margin-left", 20);
+      $(".newh4").css("margin-left", 40);
+      $(".newh5").css("margin-left", 60);
+      $(".newh6").css("margin-left", 80);
+  
+      // 处理details元素的展开与收缩
+      document.querySelectorAll('details summary').forEach(function(summary) {
+          summary.addEventListener('click', function() {
+              var details = this.nextElementSibling;
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+      });
+  });
+</script>
+
+<article class="post animated fadeInDown post article-page">
+  <h1><a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q1&#x2F;llmzhong-de-yi-xie-ji-ben-gai-nian&#x2F;">LLM中的一些基本概念</a></h1>
+  <div class="info">
+    
+      <i class="far fa-sun"></i>
+      <i>Push time: 2024-01-12 16:13:52&nbsp;&nbsp;</i>
+    
+
+    
+
+    <hr>
+  </div>
+  <!-- toc -->
+  <details class="details-2" open>
+    <summary tabindex="-1"><a href="javascript:void(0)"><i class="fa-solid fa-list"></i> 文章目录</a></summary>
+    <div id="category"></div>
+  </details>
+
+  <div class="post-content"><blockquote>
+<p>逐步系统化地了解一下</p>
+</blockquote>
+<span id="continue-reading"></span><h1 id="index-pointing-up-ji-ben-gai-nian">☝ 基本概念</h1>
+<h2 id="1-yu-xun-lian-pre-training">1、预训练（Pre-training）</h2>
+<p>预训练是指在特定任务前，让模型在大规模数据上进行训练的过程。预训练可以使模型学习到数据中的通用特征，从而在后续任务中取得更好的性能</p>
+<h2 id="2-wei-diao-fine-tuning">2、微调（Fine-Tuning）</h2>
+<p>微调是在预训练模型的基础上，使用标注数据对模型进行进一步训练，以适应特征任务的方法。微调可以使预训练模型在目标任务上具有更好的效果。</p>
+<h2 id="3-qiang-hua-xue-xi-reinforcement-learning-rl">3、强化学习（Reinforcement Learning,RL）</h2>
+<p>强化学习事一种人工智能技术，通过让智能体在环境中尝试行动，根据行动的结果来调整策略，以实现某种目标的方法。强化学习算法主要关注如何通过试错学习来优化决策过程。</p>
+<h2 id="4-ren-lei-fan-kui-qiang-hua-xue-xi-reinforcement-learning-from-human-feedback-rlhf">4、人类反馈强化学习（Reinforcement Learning from Human Feedback，RLHF）</h2>
+<p>RLHF是一种基于人类反馈的强化学习方法，通过学习人类提供的奖励信号和反馈来训练智能体，其宗旨是使智能体能更好地是适应人类的需求和偏好</p>
+<h2 id="5-si-wei-lian-chain-of-thoughts-cot">5、思维链（Chain of Thoughts，CoT）</h2>
+<p>思维链是一种表达人类推理过程的方法。通过一系列的逻辑推理步骤将从初始条件和结论相连。（就像数学公式的推理）。在人工智能领域，思维链可以用于表达模型在解决问题时的推理过程。</p>
+<h2 id="6-yong-xian-emergence">6、涌现（Emergence）</h2>
+<p>涌现是指在一个复杂系统中，通过相互作用和反馈机制产生的宏观现象。大模型能力的涌现是指：当模型达到一定规模（如计算量、模型参数或者数据集大小）时，模型会表现出意想不到的能力，这些能力在小规模模型中是不存在的。</p>
+<h2 id="7-fan-hua-generalization">7、泛化（Generalization）</h2>
+<p>泛化是指模型在训练集数据集上学到的知识能否在测试数据集上取得较好性能的能力。一个好的模型应该具备较好的泛化能力，从而在新数据上取得更好的表现。</p>
+<h2 id="8-huan-jue-hallucination">8、幻觉（hallucination）</h2>
+<p>大模型的幻觉是指模型在生成的内容产生了一些和现实世界/用户输入不一致的现象。大模型的幻觉可以分为事实性幻觉（Factuality Hullucination）和忠实性幻觉（Faithfulness Huallunination）。</p>
+<h2 id="9-transformer">9、Transformer</h2>
+<p>Transformer是一种神经网络结构，之前一直用于自然语言处理任务。它采用的是自注意力机制（Self-Attention Mechanism）来捕捉输入序列中的长距离依赖关系。</p>
+<h2 id="10-zhu-yi-li-ji-zhi-attention-mechanism">10、注意力机制（Attention Mechanism）</h2>
+<p>注意力机制是一种计算方法，用户在输入序列中动态的分配权重。在Transformer结构中，注意力机制可以帮助模型在处理场序列时只关注与当前目标相关的部分，从而提好计算效率和性能。</p>
+<h2 id="11-zi-hui-gui-autoregressive">11、自回归（Autoregressive）</h2>
+<p>自回归是一种生成模型，通过逐个预测序列中的元素，从而从前往后地生成序列。</p>
+<h2 id="12-token">12、Token</h2>
+<p>在自然语言处理中，Token是指文本的最小单元，可以是单词、字符或者其他语言单位。在深度学习中，Token用于表示输入数据的基本元素，以便进行编码和处理。</p>
+<h2 id="13-zhi-ling-wei-diao-instruction-tuning-it">13、指令微调（instruction Tuning，IT）</h2>
+<p>指令微调是针对指令生成任务的语言模型预训练方法，通过让模型学习指令和形影的输入之间的关系，提高指令生成任务的性能。</p>
+<h2 id="14-wen-du-temperature">14、温度（Temperature）</h2>
+<p>在生成模型中，温度参数用于控制生成过程的随机性。较低的温度会导致生成的结果更加具有确定性，相反会使得生成结果更加随机。</p>
+<h2 id="15-top-p">15、Top-p</h2>
+<p>Top-p是一种用于生成模型中的概率分布策略。它通过保留输入序列中概率前p的元素，来控制生成过程中的词汇多样性。</p>
+<h2 id="16-zi-jian-du">16、自监督</h2>
+<p>自监督学习是一种无监督学习方法，即模型可以在没有标签的数据上学习到有用的特征表示。在大模型中，自监督可以作为一种在无标签数据上进行预训练的方法。</p>
+<h2 id="17-jian-suo-zeng-qiang-sheng-cheng-rag-retrieval-augmented-generation">17、检索增强生成（RAG，Retrieval Augmented Generation）</h2>
+<p>RAG是是通过检索获取知识库里面的相关知识，并将其融入到Prompt中，让大模型能够参考相应的知识从而给出合理的答案。其核心是“检索+生成”。</p>
+<h2 id="18-hun-he-zhuan-jia-mo-xing-moe-mixture-of-experts">18、混合专家模型（MOE，Mixture of Experts）</h2>
+<p>MOE是一种稀疏门控制的深度学习模型，它主要由一组专家模型（Experts）和一个门控模型（GateNe）组成。MoE的基本理念是将输入数据根据任务类型分割成多个区域，并将每个区域的数据分配一个或多个专家模型。每个专家模型可以专注于处理输入这部分数据，从而提高模型的整体性能。简单理解就是：术业有专攻+三个臭皮匠，顶个诸葛亮。代表作品Mistral 8x7B。</p>
+<h2 id="19-duo-mo-tai-da-mo-xing-multimodal-large-language-models-mllm">19、多模态大模型（Multimodal Large Language Models, MLLM）</h2>
+<p>文本、语音、图像等等，这些都可以称为是一种模态。多模态就是对Language、Vision、Audio进行联合建模。包括到3d, radar, point cloud, structure (e.g. layout, markup language)。<strong>多模态大模型</strong>就是一个端到端的具备多种模态输入，多种模态输出的大模型。</p>
+</div>
+  <div class="post-footer">
+    <div class="meta">
+      <div class="info">
+        <!-- 这里可以添加额外的 meta 信息 -->
+        
+        
+        
+    
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <div class="post-navigation">
+          
+          <div class="nav-item prev">
+            
+              
+              
+              <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Blog&#x2F;2024&#x2F;Q1&#x2F;fastgpt-chatglm2-wechat&#x2F;" class="nav-link">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-title">FastGPT,ChatGLM2,WeChat本地化部署实战</span>
+              </a>
+            
+          </div>
+      
+          
+          <div class="nav-item next">
+            
+              
+              
+              <a href="https:&#x2F;&#x2F;king-key.github.io&#x2F;Essay&#x2F;2024&#x2F;2024-01-05&#x2F;" class="nav-link">
+                <span class="nav-title">一场大雪</span>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+  .post-navigation {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+  }
+
+  .nav-item {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .nav-item.prev {
+    text-align: left;
+    padding-right: 1rem;
+  }
+
+  .nav-item.next {
+    text-align: right;
+    padding-left: 1rem;
+  }
+
+  .nav-link {
+    color: #2c3e50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .nav-disabled {
+    color: #95a5a6;
+    font-style: italic;
+  }
+
+  .nav-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .nav-title {
+      max-width: 30vw;
+    }
+  }
+</style>
+  
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
