@@ -51,5 +51,5 @@ MBTI性格类型-INTJ ｜ 📮邮箱：[guo__wang__113@163.com](mailto:guo_wang_
 - 结果导向，强执行力和自我驱动能力、理解能力和学习能力。
 - XMind、PPT、Keynote等。
 
-$ _{update:2025.07} $
+$_{update:2025.07}$
 
