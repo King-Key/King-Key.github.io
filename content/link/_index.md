@@ -213,6 +213,7 @@ paginate_by: 0
 - [Chaoyou Fu](https://bradyfu.github.io/),Assistant Professor @ Nanjing University
 - [Ganqu Cui](https://cgq15.github.io/),a researcher in Shanghai AI Laboratory
 - [刘子纬](https://liuziwei7.github.io/), Associate Professor @ NTU
+- [Zuxin Liu](https://zuxin.me/),Research Scientist at [Salesforce AI Research](https://www.salesforceairesearch.com/)
 
 
 ## >>联系企业
