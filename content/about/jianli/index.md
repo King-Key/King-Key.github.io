@@ -13,7 +13,7 @@ MBTI性格类型-INTJ ｜ 📮邮箱：[guo__wang__113@163.com](mailto:guo_wang_
 
 ### 🧱 工作经历
 
-- 2024.11 - 2025.04 [蚂蚁技术研究院](https://antresearch.com) 资深技术运营（外包）
+- 2024.11 - 2025.04 [蚂蚁技术研究院](https://antresearch.com) 资深技术运营
 
 - 2019.07 - 2024.03  [北京智一科技](https://zhidx.com/about) 资深课程经理/[智东西公开课](https://course.zhidx.com/ )教研组Leader
 
@@ -26,8 +26,8 @@ MBTI性格类型-INTJ ｜ 📮邮箱：[guo__wang__113@163.com](mailto:guo_wang_
 - 社区公众号（青稞AI)关注达到18000+、私域用户5000+、视频号关注1500+、小红书用户1000+
 - 组织[青稞Talk](http://qingkeai.online/categories/talk)（线上）60+期，[青稞Tea](https://lu.ma/user/qingke)（线下）2期；其中LLM Infra报名170+
 
-
 #### 2022.01 - 2024.03：ToC产品·新青年讲座 负责人
+
 - **关注**前沿技术发展趋势，**策划**了AI新青年讲座、自动驾驶新青年讲座等12档讲座栏目。
 - 其中AI新青年讲座125期，受众15000+、点击量200000+；自动驾驶新青年讲座14期，受众7000+、点击量55000+。
 - **连接**博士生/助理教授等青年讲者500+名，覆盖海内外高校如MIT、CMU、TUM、NUS、斯坦福、清华、北大等100+余所。
