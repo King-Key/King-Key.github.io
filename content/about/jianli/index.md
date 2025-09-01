@@ -23,8 +23,8 @@ MBTI性格类型-INTJ ｜ 📮邮箱：[guo__wang__113@163.com](mailto:guo_wang_
 
 #### 2024.04 - 至今：[青稞社区](qingkelab.github.io) 主理/运营（定位于青年 AI 研究员 Idea 加油站，AI 开发者的新能源充电桩，是国内外知名的高质量 AI 技术交流社区）
 
-- 社区公众号（青稞AI)关注达到18000+、私域用户5000+、视频号关注1500+、小红书用户1000+
-- 组织[青稞Talk](http://qingkeai.online/categories/talk)（线上）60+期，[青稞Tea](https://lu.ma/user/qingke)（线下）2期；其中LLM Infra报名170+
+- 社区公众号（青稞AI）关注达到19000+、私域用户5000+、视频号关注2400+、小红书用户1000+
+- 组织[青稞Talk](http://qingkeai.online/categories/talk)（线上）70+期，[青稞Tea](https://lu.ma/user/qingke)（线下）2期；单场活动报名150+
 
 #### 2022.01 - 2024.03：ToC产品·新青年讲座 负责人
 
@@ -51,5 +51,5 @@ MBTI性格类型-INTJ ｜ 📮邮箱：[guo__wang__113@163.com](mailto:guo_wang_
 - 结果导向，强执行力和自我驱动能力、理解能力和学习能力。
 - XMind、PPT、Keynote等。
 
-$_{update:2025.07}$
+${update:2025.09}$
 
