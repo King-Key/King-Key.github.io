@@ -4,7 +4,7 @@
   {% for page in paginator.pages %}
     <section class="post animated fadeInDown">
       <div class="post-wrapper">
-        <!-- 整个卡片变成可点击 -->
+        <!-- 整个卡片可点击 -->
         <a href="{{ page.permalink }}" class="post-card">
           <div class="post-content-wrapper">
             <div class="post-title">
@@ -63,15 +63,20 @@
   </div>
 
   <style>
-    /* 卡片整体可点 */
     .post-card {
       display: block;
+      position: relative;
       width: 100%;
       text-decoration: none;
       color: inherit;
       padding: 1em;
       border-radius: 8px;
       transition: background 0.3s ease;
+      z-index: 1; /* 确保在最上层 */
+    }
+
+    .post-card * {
+      pointer-events: none; /* 避免子元素阻挡点击 */
     }
 
     .post-card:hover {
