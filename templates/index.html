@@ -2,69 +2,60 @@
 
 {% block content %}
   {% for page in paginator.pages %}
-    <article class="post animated fadeInDown">
-      <a href="{{ page.permalink }}" class="post-card-link" aria-label="Read more: {{ page.title }}">
-        <div class="post-wrapper">
+    <section class="post animated fadeInDown">
+      <div class="post-wrapper">
+        <!-- 整个卡片可点击 -->
+        <a href="{{ page.permalink }}" class="post-card">
           <div class="post-content-wrapper">
-            <!-- 标题 -->
-            <header class="post-header">
-              <h3 class="post-title">{{ page.title }}</h3>
-            </header>
+            <div class="post-title">
+              <h3># {{ page.title }}</h3>
+            </div>
 
-            <!-- 摘要 -->
-            <div class="post-excerpt">
+            <div class="post-content">
               <p>
                 {% if page.extra.summary %}
-                  {{ page.extra.summary | safe | striptags | truncate(length=150) }}
+                  {{ page.extra.summary | safe | striptags }}
                 {% else %}
                   {{ page.content | safe | striptags | truncate(length=150) }}
                 {% endif %}
               </p>
             </div>
 
-            <!-- 页脚信息 -->
-            <footer class="post-footer">
-              <div class="meta info">
-                {% if page.date %}
-                  <span class="meta-item">
-                    <i class="far fa-sun" aria-hidden="true"></i>
-                    <time datetime="{{ page.date | date(format="%Y-%m-%d") }}">
-                      {{ page.date | date(format="%Y-%m-%d") }}
-                    </time>
-                  </span>&nbsp;&nbsp;
-                {% endif %}
-
-                {% if page.taxonomies.tags %}
-                  <span class="meta-item tags">
-                    <i class="fas fa-tags" aria-hidden="true"></i>
+            <div class="post-footer">
+              <div class="meta">
+                <div class="info">
+                  {% if page.date %}
+                    <i class="far fa-sun"></i>
+                    <i> Push time: {{ page.date | date(format="%Y-%m-%d %H:%M:%S") }}&nbsp;&nbsp;</i>
+                  {% endif %}
+                  {% if page.taxonomies.tags %}
+                    <i class="fas fa-tags"></i>
                     {% for tag in page.taxonomies.tags %}
-                      <span class="tag">{{ tag }}</span>{% if not loop.last %}&nbsp;</span>
+                      <span class="tag">{{ tag }}&nbsp;&nbsp;</span>
                     {% endfor %}
-                  </span>
-                {% endif %}
+                  {% endif %}
+                </div>
               </div>
-            </footer>
+            </div>
           </div>
-        </div>
-      </a>
-    </article>
+        </a>
+      </div>
+    </section>
   {% endfor %}
 
-  <!-- 分页导航 -->
   <div class="pagination">
     <ul class="clearfix">
-      {% if paginator.previous %}
-        <li class="pre pagbuttons">
-          <a class="btn" href="{{ paginator.previous }}" rel="prev" aria-label="{{ trans(key='last_page', lang=lang) }}">
-            {{ trans(key='last_page', lang=lang) }}
+      {% if paginator.next %}
+        <li class="next pagbuttons">
+          <a class="btn" role="navigation" href="{{ paginator.next }}" aria-label="{{ trans(key="next_page", lang=lang) }}">
+            {{ trans(key="next_page", lang=lang) }}
           </a>
         </li>
       {% endif %}
-
-      {% if paginator.next %}
-        <li class="next pagbuttons">
-          <a class="btn" href="{{ paginator.next }}" rel="next" aria-label="{{ trans(key='next_page', lang=lang) }}">
-            {{ trans(key='next_page', lang=lang) }}
+      {% if paginator.previous %}
+        <li class="pre pagbuttons">
+          <a class="btn" role="navigation" href="{{ paginator.previous }}" aria-label="{{ trans(key="last_page", lang=lang) }}">
+            {{ trans(key="last_page", lang=lang) }}
           </a>
         </li>
       {% endif %}
@@ -72,100 +63,52 @@
   </div>
 
   <style>
-    /* 卡片容器 */
-    .post {
-      margin-bottom: 1rem;
-    }
-
-    .post-wrapper {
-      background: #fff;
-      border: 1px solid #eaeaea;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    /* 整个卡片作为链接 */
-    .post-card-link {
+    .post-card {
       display: block;
-      color: inherit;
+      position: relative;
+      width: 100%;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border-radius: 12px;
-      overflow: hidden;
+      color: inherit;
+      padding: 1em;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      z-index: 1; /* 确保在最上层 */
     }
 
-    .post-card-link:hover,
-    .post-card-link:focus {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transform: translateY(-2px);
-      outline: 2px solid #007acc; /* 可访问性焦点提示 */
-      outline-offset: -2px;
+    .post-card * {
+      pointer-events: none; /* 避免子元素阻挡点击 */
     }
 
-    /* 内容区 */
-    .post-content-wrapper {
-      padding: 1.2em;
+    .post-card:hover {
+      background: #f9f9f9;
     }
 
-    .post-title {
-      margin: 0 0 0.6em;
-      font-size: 1.3em;
-      font-weight: 600;
-      color: #1a1a1a;
+    .post-title h3 {
+      margin: 0 0 0.5em 0;
     }
 
-    .post-excerpt p {
-      margin: 0 0 1em;
-      color: #555;
-      line-height: 1.6;
-      font-size: 0.95em;
-    }
-
-    /* 页脚样式 */
-    .post-footer .meta {
-      font-size: 0.85em;
-      color: #777;
-    }
-
-    .meta-item i {
-      margin-right: 4px;
-      color: #888;
+    .post-content p {
+      margin: 0 0 1em 0;
     }
 
     .tag {
-      display: inline-block;
-      background: #eef2f7;
-      color: #4a7ebc;
-      border-radius: 6px;
-      padding: 0.15em 0.5em;
-      margin-right: 0.4em;
-      font-size: 0.8em;
+      background: #f0f0f0;
+      border-radius: 4px;
+      padding: 0.2em 0.5em;
+      font-size: 0.85em;
     }
 
-    /* 移动端优化：更大的点击区域和字体 */
+    /* 移动端优化 */
     @media (max-width: 768px) {
-      .post-content-wrapper {
-        padding: 1em;
+      .post-card {
+        padding: 0.8em;
       }
-
-      .post-title {
-        font-size: 1.2em;
-        margin-bottom: 0.5em;
+      .post-title h3 {
+        font-size: 1.1em;
       }
-
-      .post-excerpt p {
+      .post-content p {
         font-size: 0.9em;
-        line-height: 1.5;
-      }
-
-      .post-card-link:hover {
-        transform: none; /* 移除移动设备上的悬停动画 */
-      }
-
-      /* 确保最小点击区域符合 WCAG 规范（至少 44x44px） */
-      .post-wrapper {
-        min-height: 60px;
+        line-height: 1.4em;
       }
     }
   </style>
