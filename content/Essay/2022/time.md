@@ -21,7 +21,7 @@ taxonomies:
 			var time = parseInt(days / (1000 * 60 * 60 * 24));
 			var time3 = parseInt(days3 / (1000 * 60 * 60 * 24));
 			var time4 = parseInt(days4 / (1000 * 60 * 60 * 24));
-			document.write('<center><h3>这是我们相遇的第 <span style="color: red;">' + time3 + '</span> 天</h3>' + '<h3>也是我们在一起的第 <span style="color: red;">' + time + '</span> 天</h3>+ '<h3>我们结婚的第 <span style="color: red;">' + time4 + '</span> 天</h3></center>');
+			document.write('<center><h3>这是我们相遇的第 <span style="color: red;">' + time3 + '</span> 天</h3>' + '<h3>也是我们在一起的第 <span style="color: red;">' + time + '</span> 天</h3>' + '<h3>我们结婚的第 <span style="color: red;">' + time4 + '</span> 天</h3></center>');
 		</script>
 ​	</body>
 </html>
