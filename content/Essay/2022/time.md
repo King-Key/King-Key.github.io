@@ -7,22 +7,21 @@ taxonomies:
 
 <html>
 	<body>
-
 		<script LANGUAGE="JavaScript">
-		var s1 = '2022-01-18';
-		var s3 = '2021-07-05';
-        var s4 = '2025-10-01';
-		s1 = new Date(s1.replace(/-/g, "/"));
-		s3 = new Date(s3.replace(/-/g, "/"));
-        s4 = new Date(s2.replace(/-/g, "/"));
-		s2 = new Date();//当前日期
-		var days = s2.getTime() - s1.getTime();
-		var days3 = s2.getTime() - s3.getTime();
-        var dats4 = s4.getTime() - s4.getTime();
-		var time = parseInt(days / (1000 * 60 * 60 * 24));
-		var time3 = parseInt(days3 / (1000 * 60 * 60 * 24));
-        var time4 = parseInt(days4 / (1000 * 60 * 60 * 24));
-		document.write('<center><h3>这是我们相遇的第 <span style="color: red;">' + time3 + '</span> 天</h3>' + '<h3>也是我们在一起的第 <span style="color: red;">' + time + '</span> 天</h3>+ '<h3>我们结婚的第 <span style="color: red;">' + time4 + '</span> 天</h3></center>');
+			var s1 = '2022-01-18';
+			var s3 = '2021-07-05';
+			var s4 = '2025-10-01';
+			s1 = new Date(s1.replace(/-/g, "/"));
+			s3 = new Date(s3.replace(/-/g, "/"));
+			s4 = new Date(s2.replace(/-/g, "/"));
+			s2 = new Date();//当前日期
+			var days = s2.getTime() - s1.getTime();
+			var days3 = s2.getTime() - s3.getTime();
+			var dats4 = s4.getTime() - s4.getTime();
+			var time = parseInt(days / (1000 * 60 * 60 * 24));
+			var time3 = parseInt(days3 / (1000 * 60 * 60 * 24));
+			var time4 = parseInt(days4 / (1000 * 60 * 60 * 24));
+			document.write('<center><h3>这是我们相遇的第 <span style="color: red;">' + time3 + '</span> 天</h3>' + '<h3>也是我们在一起的第 <span style="color: red;">' + time + '</span> 天</h3>+ '<h3>我们结婚的第 <span style="color: red;">' + time4 + '</span> 天</h3></center>');
 		</script>
 ​	</body>
 </html>
